@@ -43,7 +43,7 @@ export class EventDetailsComponent implements OnInit {
     return this.eventDetails?.eventTicketsList?.reduce((acc, ticket) => acc + ticket.availableSeats, 0) ?? 0;
   }
   openTicketModal() {
-    const modalRef = this.modalService.open(SelectTicketModalComponent);
+    const modalRef = this.modalService.open(SelectTicketModalComponent,{backdrop: 'static', keyboard: false,centered:true});
     modalRef.componentInstance.eventDetails = this.eventDetails;
   }
 
