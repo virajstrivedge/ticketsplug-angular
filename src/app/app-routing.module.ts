@@ -6,12 +6,7 @@ import {EventDetailsComponent} from "./pages/event-details/event-details.compone
 const routes: Routes = [
   {
     path: '',
-    component:HomeComponent
-  },
-  {
-    path:'event-details',
-    redirectTo:'',
-    pathMatch:'full'
+    component:EventDetailsComponent
   },
   {
     path:'event-details/:id',

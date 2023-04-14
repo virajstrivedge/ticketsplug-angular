@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {ApiService} from "../../shared/services/api.service";
+import {HttpParams} from "@angular/common/http";
+import {EventDetails, EventResponse} from "../../shared/models/event";
 
 @Component({
   selector: 'app-event-details',
@@ -7,16 +10,36 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./event-details.component.scss']
 })
 export class EventDetailsComponent implements OnInit {
+  eventName: string = '';
+  eventDetails: EventDetails | undefined;
 
-  constructor(private route: ActivatedRoute) {
-    //get id params from url
-    this.route.snapshot.paramMap.get('id');
-    console.log(this.route.snapshot.paramMap.get('id'));
+  constructor(private route: ActivatedRoute, private apiService: ApiService) {
+    const {hostname} = window.location
+    const [subdomain] = hostname.split('.')
+    console.log(subdomain)
+    this.eventName = subdomain;
 
   }
 
   ngOnInit(): void {
+    this.getEventDetails();
   }
 
+  getEventDetails() {
+    let params = new HttpParams();
+    params = params.append('eventName', this.eventName);
+    this.apiService.getEventDetails(params).subscribe((res: EventResponse) => {
+      this.eventDetails = res.data;
+      console.log(this.eventDetails)
+      // console.log(this.getAvailableTickets())
+    }, error => {
+      console.log(error)
+    })
+  }
+
+  //get remaining tickets
+  getAvailableTickets():number {
+    return this.eventDetails?.eventTicketsList.reduce((acc, ticket) => acc + ticket.availableSeats, 0) ?? 0;
+  }
 
 }

@@ -9,6 +9,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { EventDetailsComponent } from './pages/event-details/event-details.component';
 import { InvoiceDetailsComponent } from './pages/invoice-details/invoice-details.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -17,12 +18,13 @@ import { InvoiceDetailsComponent } from './pages/invoice-details/invoice-details
     FooterComponent,
     HomeComponent,
     EventDetailsComponent,
-    InvoiceDetailsComponent
+    InvoiceDetailsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
