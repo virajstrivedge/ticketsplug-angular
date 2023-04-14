@@ -34,13 +34,13 @@
                 </div>
                 <div class="information-ticket col-sm-6 col-lg-4">
                     <span class="label">
-                        <img src="assets/images/front/label.png" alt=""> 
+                        <img src="assets/images/front/label.png" alt="">
                         <span class="text free"><b>F</b><b>r</b><b>e</b><b>e</b></span>
                     </span>
                     <div class="content-wrap">
                         <div class="ticket-buttons">
                             <span class="ticket">{{getAvailableTickets()}} Tickets Left</span>
-                            <a href="" class="btn btnsuccess">Book Now</a>
+                            <a class="btn btnsuccess" (click)="openTicketModal()">Book Now</a>
                         </div>
                     </div>
                 </div>

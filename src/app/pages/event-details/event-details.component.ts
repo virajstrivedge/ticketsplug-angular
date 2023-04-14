@@ -33,7 +33,6 @@ export class EventDetailsComponent implements OnInit {
     this.apiService.getEventDetails(params).subscribe((res: EventResponse) => {
       this.eventDetails = res.data;
       console.log(this.eventDetails)
-      this.openTicketModal()
     }, error => {
       console.log(error)
     })
@@ -41,7 +40,7 @@ export class EventDetailsComponent implements OnInit {
 
   //get remaining tickets
   getAvailableTickets():number {
-    return this.eventDetails?.eventTicketsList.reduce((acc, ticket) => acc + ticket.availableSeats, 0) ?? 0;
+    return this.eventDetails?.eventTicketsList?.reduce((acc, ticket) => acc + ticket.availableSeats, 0) ?? 0;
   }
   openTicketModal() {
     const modalRef = this.modalService.open(SelectTicketModalComponent);
