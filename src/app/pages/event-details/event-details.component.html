@@ -14,11 +14,11 @@
                         <ul>
                             <li>
                                 <span><img src="assets/images/front/location.png" alt=""></span>
-                                The small of Asia Area
+                              {{eventDetails.address}}
                             </li>
                             <li>
                                 <span><img src="assets/images/front/calendar.png" alt=""></span>
-                                10h-17h 12/08/2023
+                              {{eventDetails.eventTimeString}} {{eventDetails.eventDateString}}
                             </li>
                             <li>
                                 <span><img src="assets/images/front/likes.png" alt=""></span>
@@ -116,58 +116,20 @@
         </div>
         <div class="pepole-of-events">
             <div class="row">
-                <div class="col-sm-6 col-md-4 col-xl-3 pepole-event">
+                <div class="col-sm-6 col-md-4 col-xl-3 pepole-event" *ngFor="let artist of eventDetails.artistList; index as i">
                     <div class="content-wrap">
                         <div class="img">
-                            <img src="assets/images/front/people-1.jpg" alt="">
+                            <img [src]="artist.artistImageUrl" alt="">
                         </div>
                         <div class="name">
-                            Chester Bennington
+                          {{artist.artistName}}
                         </div>
-                        <div class="designation">
-                            Lead Vocais
-                        </div>
+<!--                        <div class="designation">-->
+<!--                            Lead Vocais-->
+<!--                        </div>-->
                     </div>
                 </div>
-                <div class="col-sm-6 col-md-4 col-xl-3 pepole-event">
-                    <div class="content-wrap">
-                        <div class="img">
-                            <img src="assets/images/front/people-2.jpg" alt="">
-                        </div>
-                        <div class="name">
-                            Chester Bennington
-                        </div>
-                        <div class="designation">
-                            Lead Vocais
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-xl-3 pepole-event">
-                    <div class="content-wrap">
-                        <div class="img">
-                            <img src="assets/images/front/people-3.jpg" alt="">
-                        </div>
-                        <div class="name">
-                            Chester Bennington
-                        </div>
-                        <div class="designation">
-                            Lead Vocais
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-xl-3 pepole-event">
-                    <div class="content-wrap">
-                        <div class="img">
-                            <img src="assets/images/front/people-4.jpg" alt="">
-                        </div>
-                        <div class="name">
-                            Chester Bennington
-                        </div>
-                        <div class="designation">
-                            Lead Vocais
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -182,11 +144,11 @@
                 <div class="information">
                     <div class="content-wrap">
                         <div class="img">
-                            <img src="assets/images/front/information-1.png" alt="">
+                            <img [src]="eventDetails.organizerDetails?.organizerProfileUrl" alt="">
                         </div>
                         <div class="name-content-buttons">
                             <div class="name">
-                                Jhon Done
+                              {{eventDetails.organizerDetails?.organizerName}}
                             </div>
                             <div class="content">
                                 In publishing and graphic design, Lorem ipsum is a placeholder.
