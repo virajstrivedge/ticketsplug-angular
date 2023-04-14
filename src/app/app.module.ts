@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { EventDetailsComponent } from './pages/event-details/event-details.component';
 import { InvoiceDetailsComponent } from './pages/invoice-details/invoice-details.component';
 import {HttpClientModule} from "@angular/common/http";
+import { SelectTicketModalComponent } from './shared/components/select-ticket-modal/select-ticket-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {HttpClientModule} from "@angular/common/http";
     HomeComponent,
     EventDetailsComponent,
     InvoiceDetailsComponent,
+    SelectTicketModalComponent,
   ],
   imports: [
     BrowserModule,

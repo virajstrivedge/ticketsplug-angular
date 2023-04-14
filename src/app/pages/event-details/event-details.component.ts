@@ -3,6 +3,8 @@ import {ActivatedRoute} from "@angular/router";
 import {ApiService} from "../../shared/services/api.service";
 import {HttpParams} from "@angular/common/http";
 import {EventDetails, EventResponse} from "../../shared/models/event";
+import {SelectTicketModalComponent} from "../../shared/components/select-ticket-modal/select-ticket-modal.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-event-details',
@@ -11,18 +13,18 @@ import {EventDetails, EventResponse} from "../../shared/models/event";
 })
 export class EventDetailsComponent implements OnInit {
   eventName: string = '';
-  eventDetails: EventDetails | undefined;
+  eventDetails: EventDetails= {} as EventDetails;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) {
+  constructor(private route: ActivatedRoute, private apiService: ApiService,private modalService: NgbModal) {
     const {hostname} = window.location
     const [subdomain] = hostname.split('.')
-    console.log(subdomain)
     this.eventName = subdomain;
 
   }
 
   ngOnInit(): void {
     this.getEventDetails();
+
   }
 
   getEventDetails() {
@@ -31,7 +33,7 @@ export class EventDetailsComponent implements OnInit {
     this.apiService.getEventDetails(params).subscribe((res: EventResponse) => {
       this.eventDetails = res.data;
       console.log(this.eventDetails)
-      // console.log(this.getAvailableTickets())
+      this.openTicketModal()
     }, error => {
       console.log(error)
     })
@@ -40,6 +42,10 @@ export class EventDetailsComponent implements OnInit {
   //get remaining tickets
   getAvailableTickets():number {
     return this.eventDetails?.eventTicketsList.reduce((acc, ticket) => acc + ticket.availableSeats, 0) ?? 0;
+  }
+  openTicketModal() {
+    const modalRef = this.modalService.open(SelectTicketModalComponent);
+    modalRef.componentInstance.eventDetails = this.eventDetails;
   }
 
 }
