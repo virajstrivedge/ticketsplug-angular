@@ -18,6 +18,23 @@
         box-shadow: unset;
         border: 0;
       }
+      &.btnsuccess{
+        background: linear-gradient(0deg, $btn-bg-color, $btn-bg-color), linear-gradient(182.78deg, rgba(254, 254, 254, 0) 2.3%, rgba(254, 254, 254, 0) 52.97%, rgba(254, 254, 254, 0.5) 97.68%);
+        border: 1.5px solid $btn-bg-color;
+        border-radius: 5px;
+        font-family: 'josefinsans-regular';
+        color: $White-color;
+        line-height: 18px;
+        font-size: 1.2rem;
+        letter-spacing: 0.05em;
+        padding: 14px 30px;
+        outline: 0;
+        box-shadow: unset;
+        @media(max-width: 1199px){
+          font-size: 1rem;
+          padding: 12px 24px;
+        }
+      }
     }
     .title{
       font-family: 'josefinsans-semibold';
@@ -53,6 +70,11 @@
         max-width: 100%;
       }
     }
+    .form{
+      input{
+        
+      }
+    }
   }
 
   //Layout css
@@ -75,12 +97,18 @@
             justify-content: space-between;
           }
         }
+        @media(max-width: 767px){
+          padding: 15px 0;
+        }
       }
     }
 
     // Main content css
     .main-content{
       margin-top: 100px;
+      @media(max-width: 767px){
+        margin-top: 76px;
+      }
       section{
         padding: 25px 0;
       }
@@ -131,7 +159,8 @@
               height: 100%;
             }
             @media(max-width: 576px){
-              padding-top: 20px;
+              // padding-top: 20px;
+              padding-top: 55px;
             }
           }
           .information-event-details{
@@ -139,18 +168,20 @@
               height: 100%;
               text-align: center;
               font-family: 'josefinsans-bold';
-              font-size: 2rem;
+              // font-size: 2rem;
+              font-size: 1.5rem;
               line-height: 36px;
               color: $black-color1;
               display: flex;
               align-items: center;
               justify-content: center;
-              @media(max-width: 1280px){
-                font-size: 1.5rem;
-              }
+              // @media(max-width: 1280px){
+              //   font-size: 1.5rem;
+              // }
               @media(max-width: 576px){
                 display: block;
                 text-align: center;
+                font-size: 1.2rem;
               }
             }
             @media(max-width: 991px){
@@ -562,11 +593,497 @@
           }
         }
       }
+
+
+
+      //Invoice Page Details
+      .invoice-details-content{
+        padding: 50px 0 25px;
+        .invoice-details{
+          max-width: 90%;
+          margin: 0 auto;
+          .event-banner{
+            padding-bottom: 25px;
+            img{
+              width: 100%;
+            }
+          }
+          .ticket-left-content{
+            padding-bottom: 30px;
+            .buttons{
+              padding-bottom: 10px;
+            }
+            span{
+              display: block;
+              &.content{
+                font-family: 'josefinsans-regular';
+                font-size: 1.2rem;
+                line-height: 20px;
+                color: $black-color;
+                padding-bottom: 10px;
+                @media(max-width: 576px){
+                  font-size: 1.2rem;
+                }
+              }
+              &.time-content{
+                font-family: 'josefinsans-semibold';
+                font-size: 1.4rem;
+                line-height: 20px;
+                color: $btn-bg-color;
+                padding-bottom: 10px;
+                @media(max-width: 576px){
+                  font-size: 1.1rem;
+                }
+              }
+            }
+          }
+          .payment-details-content{
+            border: 1px solid $gray-color;
+            border-radius: 5px;
+            padding: 30px;
+            .event-name{
+              text-align: center;
+              font-family: 'josefinsans-bold';
+              font-size: 1.5rem;
+              line-height: 36px;
+              color: $black-color1;
+              padding-bottom: 20px;
+              @media(max-width: 576px){
+                font-size: 1.2rem;
+              }
+            }
+            .booking-content{
+              .booking-info-barcode{
+                margin-bottom: 15px;
+                display: flex;
+
+                .booking-info{
+                  margin-bottom: 0;
+                  width: calc(100% - 148px);
+                  @media(max-width: 991px){
+                    width: 100%;
+                  }
+                }
+                .barcode{
+                  border: 1px solid $gray-color;
+                  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+                  border-radius: 15px;
+                  padding: 10px;
+                  width: 148px;
+                  height: 148px;
+                  overflow: hidden;
+                  margin-left: 15px;
+                  img{
+                    object-fit: cover;
+                    width: 100%;
+                    height: 100%;
+                  }
+                  @media(max-width: 991px){
+                    margin: 15px auto 0;
+                  }
+                }
+                @media(max-width: 991px){
+                  display: block;
+                }
+              }
+              .booking-info{
+                border: 1px solid $gray-color;
+                box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 15px;
+                margin-bottom: 15px;
+                padding: 20px;
+                .booking-info-content{
+                  display: flex;
+                  justify-content: space-between;
+                  padding-bottom: 10px;
+                  .date-time{
+                    padding-right: 10px;
+                    width: 50%;
+                    @media(max-width: 767px){
+                      width: 100%;
+                      padding-bottom: 10px;
+                      padding-right: 0;
+                    }
+                  }
+                  .venue-content{
+                    padding-left: 10px;
+                    width: 50%;
+                    .content{
+                      display: flex;
+                      @media(max-width: 576px){
+                        justify-content: center;
+                      }
+                    }
+                    .venue{
+                      padding-left: 7px;
+                    }
+                    @media(max-width: 767px){
+                      width: 100%;
+                      padding-left: 0;
+                    }
+                  }
+                  @media(max-width: 576px){
+                    display: block;
+                    text-align: center;
+                  }
+                }
+                .ticket-type{
+                  border-top: 1px solid $gray-color;
+                  padding-top: 10px;
+                  font-family: 'josefinsans-semibold';
+                  font-size: 1.1rem;
+                  line-height: 20px;
+                  color: $black-color1;
+                  text-align: center;
+                  @media(max-width: 576px){
+                    font-size: 1rem;
+                  }
+                }
+              }
+              .booking-price-info{
+                border: 1px solid $gray-color;
+                box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+                border-radius: 15px;
+                padding: 10px 20px 10px;
+                table{
+                  width: 100%;
+                  // border-collapse: separate !important;
+                  // border-spacing: 0;
+                  tr{
+                    border-bottom: 1pt solid $gray-color;
+                    td{
+                      font-family: 'josefinsans-regular';
+                      font-size: 1.25rem;
+                      line-height: 20px;
+                      color: $black-color1;
+                      padding: 10px;
+                      &.total,&.price{
+                        font-family: 'josefinsans-bold';
+                        font-size: 1.1rem;
+                        line-height: 22px;
+                        color: $btn-bg-color;
+                      }
+                      @media(max-width: 576px){
+                        font-size: 1rem;
+                      }
+                    }
+                    &:last-child{
+                      border-bottom: 0;
+                    }
+                  }
+                }
+              }
+            }
+            .login-register{
+              .title-content{
+                span{
+                  display: block;
+                }
+                .span-title{
+                  font-size: 1.375rem;
+                  line-height: 33px;
+                  color: $gray-color1;
+                  padding-bottom: 5px;
+                }
+                .content{
+                  font-size: 0.9rem;
+                  line-height: 22px;
+                  color: $gray-color1;
+                }
+              }
+              form{
+                padding-top: 25px;
+                .form-group{
+                  position: relative;
+                  padding-bottom: 10px;
+                  input{
+                    border: 1px solid $btn-bg-color;
+                    border-radius: 22px;
+                    font-size: 1.125rem;
+                    line-height: 27px;
+                    color: $gray-color1;
+                    padding: 6px 0 6px 40px;
+                    outline: 0;
+                    box-shadow: unset;
+                  }
+                  img{
+                    position: absolute;
+                    left: 18px;
+                    right: auto;
+                    top: 8px;
+
+                  }
+                }
+                .buttons{
+                  padding-top: 20px;
+                  &.dflex{
+                    display: flex;
+                    justify-content: space-between;
+                  }
+                  .btn-cancel{
+                    background: transparent;
+                    border: 1.5px solid $btn-bg-color;
+                    border-radius: 5px;
+                    font-family: 'josefinsans-regular';
+                    color: $btn-bg-color;
+                    line-height: 18px;
+                    font-size: 1.2rem;
+                    letter-spacing: 0.05em;
+                    padding: 14px 30px;
+                    outline: 0;
+                    box-shadow: unset;
+                  }
+                }
+              }
+              .account-link{
+                font-size: 0.875rem;
+                line-height: 21px;
+                text-align: center;
+                color: $black-color1;
+                a{
+                  color: $btn-bg-color;
+                  text-decoration: none;
+                  cursor: pointer;
+                  padding-top: 10px;
+                }
+              }
+            }
+          }
+          @media(max-width: 767px){
+            max-width: 100%;
+          }
+        }
+      }
     }
 
 
     // Modal content css
-    
+    .modal-header{
+      display: flex;
+      align-items: center;
+      border-bottom: 0;
+      padding: 20px 30px;
+      .modal-title{
+        font-family: 'josefinsans-bold';
+        font-size: 1.5625rem;
+        line-height: 25px;
+        color: $black-color1;
+        text-align: center;
+        width: 100%;
+        @media(max-width: 576px){
+          font-size: 1rem;
+        }
+      }
+      button{
+        &.btn-back{
+          background: transparent;
+          border: 0;
+          box-shadow: unset;
+          outline: 0;
+        }
+        &.btn-close{
+          color: $btn-bg-color;
+        }
+      }
+    }
+    .modal-body{
+      padding: 0px 30px 5px;
+      .ticket-cart-content{
+        .cart-content{
+          border: 1px solid $gray-color;
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
+          border-radius: 5px;
+          margin-bottom: 15px;
+          padding: 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          .cart-title{
+            font-family: 'josefinsans-semibold';
+            font-size: 1rem;
+            line-height: 22px;
+            color: $btn-bg-color;
+          }
+          .cart-price{
+            font-family: 'josefinsans-semibold';
+            font-size: 1rem;
+            line-height: 22px;
+            color: $black-color1;
+          }
+          .wrapper{
+            // width: 100%;
+            height: calc(1.5em + 0.94rem + 2px);
+            // height: 20px;
+            padding: 0;
+            display: flex;
+            border-radius: 0.25rem;
+            align-items: center;
+            input{
+              max-width: 30px;
+              border: 0;
+              padding: 0;
+              font-family: 'josefinsans-semibold';
+              font-size: 1.1rem;
+              color: $black-color1;
+              outline: 0;
+              appearance: none;
+              text-align: center;
+              box-shadow: unset;
+            }
+            input[type=number]::-webkit-inner-spin-button, 
+            input[type=number]::-webkit-outer-spin-button { 
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                margin: 0; 
+            }
+            button{
+              background: transparent;
+              border: 0;
+              font-size: 1.1rem;
+              color: $btn-bg-color;
+              padding: 0 6px;
+              height: auto;
+              border: 1px solid $btn-bg-color;
+              border-radius: 2px;
+              vertical-align: top;
+            }
+          }
+        }
+      }
+      .booking-content{
+        .booking-info{
+          border: 1px solid $gray-color;
+          box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+          border-radius: 15px;
+          margin-bottom: 15px;
+          padding: 20px;
+          .booking-info-content{
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            .date-time{
+              padding-right: 10px;
+              width: 50%;
+              @media(max-width: 767px){
+                width: 100%;
+                padding-bottom: 10px;
+                padding-right: 0;
+              }
+            }
+            .venue-content{
+              padding-left: 10px;
+              width: 50%;
+              .content{
+                display: flex;
+                @media(max-width: 576px){
+                  justify-content: center;
+                }
+              }
+              .venue{
+                padding-left: 7px;
+              }
+              @media(max-width: 767px){
+                width: 100%;
+                padding-left: 0;
+              }
+            }
+            @media(max-width: 576px){
+              display: block;
+              text-align: center;
+            }
+          }
+          .ticket-type{
+            border-top: 1px solid $gray-color;
+            padding-top: 10px;
+            font-family: 'josefinsans-semibold';
+            font-size: 1.1rem;
+            line-height: 20px;
+            color: $black-color1;
+            text-align: center;
+            @media(max-width: 576px){
+              font-size: 1rem;
+            }
+          }
+        }
+        .booking-price-info{
+          border: 1px solid $gray-color;
+          box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+          border-radius: 15px;
+          margin-bottom: 15px;
+          padding: 10px 20px 10px;
+          table{
+            width: 100%;
+            // border-collapse: separate !important;
+            // border-spacing: 0;
+            tr{
+              border-bottom: 1pt solid $gray-color;
+              td{
+                font-family: 'josefinsans-regular';
+                font-size: 1.25rem;
+                line-height: 20px;
+                color: $black-color1;
+                padding: 10px;
+                &.total,&.price{
+                  font-family: 'josefinsans-bold';
+                  font-size: 1.1rem;
+                  line-height: 22px;
+                  color: $btn-bg-color;
+                }
+                @media(max-width: 576px){
+                  font-size: 1rem;
+                }
+              }
+              &:last-child{
+                border-bottom: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+    .modal-footer{
+      padding: 0px 30px 20px;
+      border-top: 0;
+      display: block;
+      text-align: right;
+      .d-flex{
+        align-items: center;
+        justify-content: space-between;
+      }
+      span{
+        &.total{
+          font-family: 'josefinsans-bold';
+          font-size: 1.1rem;
+          line-height: 22px;
+          color: $btn-bg-color;
+          margin: 0;
+        }
+        &.price{
+          padding-left: 7px;
+        }
+      }
+      .btn{
+        &.btnsuccess{
+          background: linear-gradient(0deg, $btn-bg-color, $btn-bg-color), linear-gradient(182.78deg, rgba(254, 254, 254, 0) 2.3%, rgba(254, 254, 254, 0) 52.97%, rgba(254, 254, 254, 0.5) 97.68%);
+          border: 1.5px solid $btn-bg-color;
+          border-radius: 5px;
+          font-family: 'josefinsans-regular';
+          color: $White-color;
+          line-height: 18px;
+          font-size: 1.2rem;
+          letter-spacing: 0.05em;
+          padding: 14px 30px;
+          outline: 0;
+          box-shadow: unset;
+          margin: 0;
+          @media(max-width: 1199px){
+            font-size: 1rem;
+            padding: 12px 24px;
+          }
+        }
+      }
+    }
 
     //Footer css
     .footer{

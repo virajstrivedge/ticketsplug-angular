@@ -1,10 +1,91 @@
 <div class="modal-header">
-  <h4 class="modal-title">Hi there!</h4>
+  <button type="button" class="btn-back"><img src="assets/images/front/back-aero.png" alt=""></button>
+  <h4 class="modal-title">Select Tickets</h4>
   <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
-  <p>Hello, {{eventDetails.address}}!</p>
+  <!-- <p>Hello, {{eventDetails.address}}!</p> -->
+  <!-- <div class="ticket-cart-content">
+    <div class="cart-content">
+      <span class="cart-title">S3</span>
+      <span class="cart-price">$60</span>
+      <div class="wrapper">
+        <button type="button" class="plusminus">-</button>
+        <input  type="number" class="form-control num" value="0">
+        <button type="button" class="plusminus">+</button>
+      </div>
+    </div>
+    <div class="cart-content">
+      <span class="cart-title">S3</span>
+      <span class="cart-price">$40</span>
+      <div class="wrapper">
+        <button type="button" class="plusminus">-</button>
+        <input  type="number" class="form-control num" value="0">
+        <button type="button" class="plusminus">+</button>
+      </div>
+    </div>
+    <div class="cart-content">
+      <span class="cart-title">S3</span>
+      <span class="cart-price">$30</span>
+      <div class="wrapper">
+        <button type="button" class="plusminus">-</button>
+        <input type="number" class="form-control num" value="0">
+        <button type="button" class="plusminus">+</button>
+      </div>
+    </div>
+  </div> -->
+  <div class="booking-content">
+    <div class="booking-info">
+      <div class="booking-info-content">
+        <div class="date-time">
+          <div class="date">Sat, 15 April, 2023</div>
+          <div class="time">12:00 PM IST</div>
+        </div>
+        <div class="venue-content">
+          <div class="content">
+              <span><img src="assets/images/front/location-venue.png" alt=""></span>
+              <span class="venue"> Ahmedabad, Gujarat, India </span>
+            </div>
+        </div>
+      </div>
+      <div class="ticket-type">
+        S2: 1 Tickets(s)
+      </div>
+    </div>
+    <div class="booking-price-info">
+      <div class="tableresponsive table-responsive-xxl">
+          <table>
+            <tbody>
+              <tr>
+                <td>Sub Totel</td>
+                <td class="text-end">$0.00</td>
+              </tr>
+              <tr>
+                <td>Convenince Fee</td>
+                <td class="text-end">$0.00</td>
+              </tr>
+              <tr>
+                <td>Handling Fee</td>
+                <td class="text-end">$0.00</td>
+              </tr>
+              <tr>
+                <td>Internet Handling Fee</td>
+                <td class="text-end">$0.00</td>
+              </tr>
+              <tr>
+                <td class="total">Total:</td>
+                <td class="price text-end">$120</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  <!-- <div class="d-flex">
+    <span class="total">Total: <span class="price">120</span></span> 
+    <button type="button" class="btn btnsuccess" (click)="activeModal.close('Close click')">Proceed</button>
+  </div> -->
+  <button type="button" class="btn btnsuccess Proceed-checkout">Proceed to pay</button>
 </div>
