@@ -35,6 +35,9 @@ export class EventDetailsComponent implements OnInit {
       console.log(this.eventDetails)
     }, error => {
       console.log(error)
+      //redirect to www.google.com
+      //find host name
+      window.location.href = 'https://ticketsplug.com/';
     })
   }
 
@@ -45,6 +48,7 @@ export class EventDetailsComponent implements OnInit {
   openTicketModal() {
     const modalRef = this.modalService.open(SelectTicketModalComponent,{backdrop: 'static', keyboard: false,centered:true,size:'lg'});
     modalRef.componentInstance.eventDetails = this.eventDetails;
+
   }
 
 }

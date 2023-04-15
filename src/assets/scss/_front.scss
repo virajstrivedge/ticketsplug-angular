@@ -3,7 +3,7 @@
     font-family: 'josefinsans-regular'!important;
     font-size: 16px!important;
     p{
-      
+
     }
     .btn{
       &.btnsignup{
@@ -72,7 +72,7 @@
     }
     .form{
       input{
-        
+
       }
     }
   }
@@ -172,19 +172,50 @@
               font-size: 1.5rem;
               line-height: 36px;
               color: $black-color1;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              // @media(max-width: 1280px){
-              //   font-size: 1.5rem;
-              // }
+              .icon-with-label-content{
+                display: flex;
+                align-items: baseline;
+                .label-content{
+                  padding-left: 7px;
+                  padding-bottom: 8px;
+                  .label{
+                    font-family: 'josefinsans-bold';
+                    font-size: 1.2rem;
+                    line-height: 25px;
+                    color: $black-color1;
+                    padding-bottom: 5px;
+                    text-align: left;
+                    @media(max-width: 1199px){
+                      font-size: 1rem;
+                    }
+                  }
+                  .content{
+                    font-family: 'josefinsans-regular';
+                    font-size: 1rem;
+                    line-height: 20px;
+                    color: $black-color1;
+                    text-align: left;
+                    @media(max-width: 1199px){
+                      font-size: 0.9rem;
+                    }
+                    span{
+                      display: block;
+                    }
+                  }
+                }
+              }
               @media(max-width: 576px){
                 display: block;
                 text-align: center;
                 font-size: 1.2rem;
               }
             }
-            @media(max-width: 991px){
+            &.event{
+              @media(max-width: 991px){
+                padding-top: 0px;
+              }
+            }
+            @media(max-width: 576px){
               padding-top: 20px;
             }
           }
@@ -930,12 +961,12 @@
               text-align: center;
               box-shadow: unset;
             }
-            input[type=number]::-webkit-inner-spin-button, 
-            input[type=number]::-webkit-outer-spin-button { 
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
                 -webkit-appearance: none;
                 -moz-appearance: none;
                 appearance: none;
-                margin: 0; 
+                margin: 0;
             }
             button{
               background: transparent;

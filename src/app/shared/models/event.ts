@@ -28,7 +28,7 @@ export interface EventDetails {
   eventTypeID?: string;
   eventCategory?: string;
   eventCategoryId?: string;
-  eventImages?: EventImage[];
+  eventImages: EventImage[];
   timezone?: string;
   timezoneShort?: string;
   eventDateString?: Date;
@@ -65,8 +65,8 @@ export interface ArtistList {
 }
 
 export interface EventImage {
-  id?: string;
-  imageUrl?: string;
+  id: string;
+  imageUrl: string;
 }
 
 export interface EventTicketsList {

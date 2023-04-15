@@ -1,91 +1,77 @@
 <div class="modal-header">
-  <button type="button" class="btn-back"><img src="assets/images/front/back-aero.png" alt=""></button>
+  <button *ngIf="isProceed" type="button" class="btn-back" (click)="isProceed=!isProceed"><img src="assets/images/front/back-aero.png" alt=""></button>
   <h4 class="modal-title">Select Tickets</h4>
   <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
   <!-- <p>Hello, {{eventDetails.address}}!</p> -->
-  <!-- <div class="ticket-cart-content">
-    <div class="cart-content">
-      <span class="cart-title">S3</span>
-      <span class="cart-price">$60</span>
+  <div class="ticket-cart-content" *ngIf="!isProceed">
+    <div class="cart-content" *ngFor="let eventTicket of eventTicketList; index as i">
+      <span class="cart-title">{{eventTicket.ticketCategory}}</span>
+      <span class="cart-price">${{eventTicket.price}}</span>
       <div class="wrapper">
-        <button type="button" class="plusminus">-</button>
-        <input  type="number" class="form-control num" value="0">
-        <button type="button" class="plusminus">+</button>
+        <button type="button" class="plusminus" (click)="removeQuantity(eventTicket)">-</button>
+        <input type="number" class="form-control num" [value]="eventTicket.addedQuantity">
+        <button type="button" class="plusminus" (click)="addQuantity(eventTicket)">+</button>
       </div>
     </div>
-    <div class="cart-content">
-      <span class="cart-title">S3</span>
-      <span class="cart-price">$40</span>
-      <div class="wrapper">
-        <button type="button" class="plusminus">-</button>
-        <input  type="number" class="form-control num" value="0">
-        <button type="button" class="plusminus">+</button>
-      </div>
-    </div>
-    <div class="cart-content">
-      <span class="cart-title">S3</span>
-      <span class="cart-price">$30</span>
-      <div class="wrapper">
-        <button type="button" class="plusminus">-</button>
-        <input type="number" class="form-control num" value="0">
-        <button type="button" class="plusminus">+</button>
-      </div>
-    </div>
-  </div> -->
-  <div class="booking-content">
+  </div>
+
+
+  <div class="booking-content" *ngIf="isProceed">
     <div class="booking-info">
       <div class="booking-info-content">
         <div class="date-time">
-          <div class="date">Sat, 15 April, 2023</div>
-          <div class="time">12:00 PM IST</div>
+          <div class="date">{{quotation.eventDateString}}</div>
+          <div class="time">{{quotation .eventTimeString}} IST</div>
         </div>
         <div class="venue-content">
           <div class="content">
-              <span><img src="assets/images/front/location-venue.png" alt=""></span>
-              <span class="venue"> Ahmedabad, Gujarat, India </span>
-            </div>
+            <span><img src="assets/images/front/location-venue.png" alt=""></span>
+            <span class="venue"> {{quotation.address}} </span>
+          </div>
         </div>
       </div>
-      <div class="ticket-type">
-        S2: 1 Tickets(s)
+      <div class="ticket-type"  *ngFor="let item of quotation.selectedTickets; index as i">
+        {{item.ticketCategory}}: {{item.bookedSeats}} Tickets(s)
       </div>
     </div>
     <div class="booking-price-info">
       <div class="tableresponsive table-responsive-xxl">
-          <table>
-            <tbody>
-              <tr>
-                <td>Sub Totel</td>
-                <td class="text-end">$0.00</td>
-              </tr>
-              <tr>
-                <td>Convenince Fee</td>
-                <td class="text-end">$0.00</td>
-              </tr>
-              <tr>
-                <td>Handling Fee</td>
-                <td class="text-end">$0.00</td>
-              </tr>
-              <tr>
-                <td>Internet Handling Fee</td>
-                <td class="text-end">$0.00</td>
-              </tr>
-              <tr>
-                <td class="total">Total:</td>
-                <td class="price text-end">$120</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <table>
+          <tbody>
+          <tr>
+            <td>Sub Totel</td>
+            <td class="text-end">${{quotation.ticketPrice}}</td>
+          </tr>
+          <tr>
+            <td>Convenience Fee</td>
+            <td class="text-end">${{quotation.organizingFees}}</td>
+          </tr>
+          <tr>
+            <td>Handling Fee</td>
+            <td class="text-end">${{quotation.handlingFees}}</td>
+          </tr>
+          <tr>
+            <td>Internet Handling Fee</td>
+            <td class="text-end">${{quotation.stripeCharges |number}}</td>
+          </tr>
+          <tr>
+            <td class="total">Total:</td>
+            <td class="price text-end">${{quotation.totalAmount}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
 <div class="modal-footer">
-  <!-- <div class="d-flex">
-    <span class="total">Total: <span class="price">120</span></span> 
-    <button type="button" class="btn btnsuccess" (click)="activeModal.close('Close click')">Proceed</button>
-  </div> -->
-  <button type="button" class="btn btnsuccess Proceed-checkout">Proceed to pay</button>
+  <div class="d-flex" *ngIf="!isProceed">
+    <span class="total">Total: <span class="price">${{totalSelectedTicketsPrice}}</span></span>
+    <button type="button" class="btn btnsuccess" (click)="goToDetails()">Proceed</button>
+  </div>
+  <button *ngIf="isProceed" type="button" class="btn btnsuccess Proceed-checkout"
+          (click)="activeModal.close('Close click')">Proceed to pay
+  </button>
 </div>
