@@ -10,41 +10,43 @@
     <div class="ticket-details-information">
       <div class="row">
         <!--                <div class="information-details col-sm-6 col-lg-4">-->
-        <div class="information-event-details col-sm-6 col-lg-4">
-          <div class="content-wrap">
-            <div class="icon-with-label-content">
-              <span><img src="assets/images/front/event.png" alt=""></span>
-              <div class="label-content">
-                <div class="label">
-                  Locatiions
-                </div>
-                <div class="content">
-                  {{eventDetails.address}}
-                </div>
-              </div>
-            </div>
-            <div class="icon-with-label-content">
-              <span><img src="assets/images/front/calendar.png" alt=""></span>
-              <div class="label-content">
-                <div class="label">
-                  Date & Time
-                </div>
-                <div class="content">
-                  {{eventDetails.eventTimeString}} {{eventDetails.eventDateString}}
+        <div class="information-event-details">
+          <div class="content-wrap row">
+            <div class="col-sm-6 col-lg-4">
+              <div class="icon-with-label-content">
+                <span><img src="assets/images/front/event.png" alt=""></span>
+                <div class="label-content">
+                  <div class="label">
+                    Locatiions
+                  </div>
+                  <div class="content">
+                    {{eventDetails.address}}
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="icon-with-label-content">
-              <span><img src="assets/images/front/age-group.png" alt=""></span>
-              <div class="label-content">
-                <div class="label">
-                  Age Group
-                </div>
-                <div class="content">
-                  {{eventDetails.ageLimit}}
+            <div class="col-sm-6 col-lg-4">
+              <div class="icon-with-label-content">
+                <span><img src="assets/images/front/event.png" alt=""></span>
+                <div class="label-content">
+                  <div class="label">
+                    Event Name
+                  </div>
+                  <div class="content">
+                    {{eventDetails.eventName}}
+                  </div>
                 </div>
               </div>
+
             </div>
+            <div class="col-sm-6 col-lg-4">
+              <div class="ticket-buttons">
+                <span *ngIf="eventDetails?.showRemainingTickets" class="ticket">{{getAvailableTickets()}} Tickets Left</span>
+                <!--              <button class="btn btnsuccess" (click)="openTicketModal()">Book Now</button>-->
+                <button class="btn btn-secondary" (click)="openTicketModal()">Book Now</button>
+              </div>
+            </div>
+
             <!--                        <ul>-->
             <!--                            <li>-->
             <!--                                <span><img src="assets/images/front/location.png" alt=""></span>-->
@@ -60,46 +62,77 @@
             <!--                            </li>-->
             <!--                        </ul>-->
           </div>
-        </div>
-        <div class="information-event-details event col-sm-6 col-lg-4">
-          <div class="content-wrap">
-            <div class="icon-with-label-content">
-              <span><img src="assets/images/front/event.png" alt=""></span>
-              <div class="label-content">
-                <div class="label">
-                  Event Name
-                </div>
-                <div class="content">
-                  {{eventDetails.eventName}}
-                </div>
-              </div>
-            </div>
-            <div class="icon-with-label-content">
-              <span><img src="assets/images/front/event.png" alt=""></span>
-              <div class="label-content">
-                <div class="label">
-                  Event Info
-                </div>
-                <div class="content">
-                  {{eventDetails.description}}
+          <div class="content-wrap row">
+            <div class="col-sm-6 col-lg-4">
+              <div class="icon-with-label-content">
+                <span><img src="assets/images/front/calendar.png" alt=""></span>
+                <div class="label-content">
+                  <div class="label">
+                    Date & Time
+                  </div>
+                  <div class="content">
+                    {{eventDetails.eventTimeString}} {{eventDetails.eventDateString}}
+                  </div>
                 </div>
               </div>
-            </div>
-
           </div>
-
+            <div class="col-sm-6 col-lg-4">
+              <div class="icon-with-label-content">
+                <span><img src="assets/images/front/age-group.png" alt=""></span>
+                <div class="label-content">
+                  <div class="label">
+                    Age Group
+                  </div>
+                  <div class="content">
+                    {{eventDetails.ageLimit}}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+<!--        <div class="information-event-details event col-sm-6 col-lg-4">-->
+<!--          <div class="content-wrap">-->
+
+<!--            <div class="icon-with-label-content">-->
+<!--              <span><img src="assets/images/front/age-group.png" alt=""></span>-->
+<!--              <div class="label-content">-->
+<!--                <div class="label">-->
+<!--                  Age Group-->
+<!--                </div>-->
+<!--                <div class="content">-->
+<!--                  {{eventDetails.ageLimit}}-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+
+<!--          </div>-->
+
+<!--        </div>-->
 
         <div class="information-ticket col-sm-6 col-lg-4">
                     <span class="label" *ngIf="eventDetails?.eventFree">
                         <img src="assets/images/front/label.png" alt="">
                         <span class="text free"><b>F</b><b>r</b><b>e</b><b>e</b></span>
                     </span>
-          <div class="content-wrap">
-            <div class="ticket-buttons">
-              <span *ngIf="eventDetails?.showRemainingTickets" class="ticket">{{getAvailableTickets()}} Tickets Left</span>
-              <button class="btn btnsuccess" (click)="openTicketModal()">Book Now</button>
-            </div>
+<!--          <div class="content-wrap">-->
+<!--            <div class="ticket-buttons">-->
+<!--              <span *ngIf="eventDetails?.showRemainingTickets" class="ticket">{{getAvailableTickets()}} Tickets Left</span>-->
+<!--&lt;!&ndash;              <button class="btn btnsuccess" (click)="openTicketModal()">Book Now</button>&ndash;&gt;-->
+<!--              <button class="btn btn-secondary" (click)="openTicketModal()">Book Now</button>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+      </div>
+      <div class="icon-with-label-content event-info">
+        <span><img src="assets/images/front/event.png" alt=""></span>
+        <div class="label-content">
+          <div class="label">
+            Event Info
+          </div>
+          <div class="content">
+            {{eventDetails.description}}
           </div>
         </div>
       </div>
@@ -167,31 +200,31 @@
 <!--        </div>-->
 <!--    </div>-->
 <!--</section>-->
-<section class="pepole-of-events-content" *ngIf="eventDetails.artistList?.length">
-  <div class="container">
-    <div class="title">
-      <span>People of event</span>
-    </div>
-    <div class="pepole-of-events">
-      <div class="row">
-        <div class="col-sm-6 col-md-4 col-xl-3 pepole-event" *ngFor="let artist of eventDetails.artistList; index as i">
-          <div class="content-wrap">
-            <div class="img">
-              <img [src]="artist.artistImageUrl??'assets/images/front/default_artist_pic.svg'" alt="">
-            </div>
-            <div class="name">
-              {{artist.artistName}}
-            </div>
-            <!--                        <div class="designation">-->
-            <!--                            Lead Vocais-->
-            <!--                        </div>-->
-          </div>
-        </div>
+<!--<section class="pepole-of-events-content" *ngIf="eventDetails.artistList?.length">-->
+<!--  <div class="container">-->
+<!--    <div class="title">-->
+<!--      <span>People of event</span>-->
+<!--    </div>-->
+<!--    <div class="pepole-of-events">-->
+<!--      <div class="row">-->
+<!--        <div class="col-sm-6 col-md-4 col-xl-3 pepole-event" *ngFor="let artist of eventDetails.artistList; index as i">-->
+<!--          <div class="content-wrap">-->
+<!--            <div class="img">-->
+<!--              <img [src]="artist.artistImageUrl??'assets/images/front/default_artist_pic.svg'" alt="">-->
+<!--            </div>-->
+<!--            <div class="name">-->
+<!--              {{artist.artistName}}-->
+<!--            </div>-->
+<!--            &lt;!&ndash;                        <div class="designation">&ndash;&gt;-->
+<!--            &lt;!&ndash;                            Lead Vocais&ndash;&gt;-->
+<!--            &lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
 
-      </div>
-    </div>
-  </div>
-</section>
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
 <section class="organizer-information-content">
   <div class="container">
     <div class="organizer-information">
@@ -208,7 +241,8 @@
             </div>
             <div class="name-content-buttons">
               <div class="name">
-                {{eventDetails.organizerDetails?.organizerName}}
+<!--                {{eventDetails.organizerDetails?.organizerName}}-->
+                Daniel O.
               </div>
               <!--              <div class="content">-->
               <!--                In publishing and graphic design, Lorem ipsum is a placeholder.-->
