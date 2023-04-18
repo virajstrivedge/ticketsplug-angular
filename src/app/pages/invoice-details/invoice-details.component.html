@@ -11,17 +11,17 @@
       </div>
       <div class="payment-details-content">
         <div class="booking-content row">
-          <div class="login-register col-lg-5" *ngIf="currentUser?.userId">
+          <div class="login-register col-lg-5" *ngIf="currentUser?.userId && !isFreeEvent">
             <div class="title-content">
               <span class="span-title">Enter your card details</span>
             </div>
             <form [formGroup]="stripeTokenForm" class="register">
               <div class="form-group">
-            <ngx-stripe-card
-              [options]="cardOptions"
-              [elementsOptions]="elementsOptions"
-              (change)="onCardChange($event)"
-            ></ngx-stripe-card>
+                <ngx-stripe-card
+                  [options]="cardOptions"
+                  [elementsOptions]="elementsOptions"
+                  (change)="onCardChange($event)"
+                ></ngx-stripe-card>
               </div>
               <div class="form-group">
                 <img src="assets/images/front/user.png" alt="" class="icon">
@@ -46,13 +46,27 @@
                 >
                 <div class="invalid-feedback">
                   <div *ngIf="stripeTokenForm.controls['email'].errors?.['required']">Email is required</div>
-                  <div *ngIf="stripeTokenForm.controls['email'].errors?.['pattern']">Please enter a valid email address</div>
+                  <div *ngIf="stripeTokenForm.controls['email'].errors?.['pattern']">Please enter a valid email
+                    address
+                  </div>
                 </div>
               </div>
               <div class="form-group buttons dflex">
                 <button type="button" class="btn btnsuccess btn-cancel" (click)="cancel()">Cancel</button>
-                <button type="button" class="btn btnsuccess" [disabled]="!validCardForm" (click)="createToken()">Make payment</button>
+                <button type="button" class="btn btnsuccess" [disabled]="!validCardForm" (click)="createToken()">Make
+                  payment
+                </button>
               </div>
+            </form>
+          </div>
+          <div class="login-register col-lg-5" *ngIf="currentUser?.userId && isFreeEvent">
+            <form>
+            <div class="form-group buttons dflex">
+              <button type="button" class="btn btnsuccess btn-cancel" (click)="cancel()">Cancel</button>
+              <button type="button" class="btn btnsuccess"  (click)="bookFreeEvent()">Make
+                payment
+              </button>
+            </div>
             </form>
           </div>
           <div class="login-register col-lg-5" *ngIf="!currentUser?.userId">
@@ -60,23 +74,50 @@
               <span class="span-title">Provide your Details</span>
               <span class="content">We'll send you E-Ticket on your provided email.</span>
             </div>
-            <form action="" class="register" *ngIf="isGuestShow">
+            <form [formGroup]="guestForm" class="register" *ngIf="isGuestShow">
               <div class="form-group">
                 <img src="assets/images/front/user.png" alt="" class="icon">
-                <input type="text" class="form-control" placeholder="First Name">
+                <input type="text"
+                       class="form-control"
+                       placeholder="First Name"
+                       formControlName="firstName"
+                       [ngClass]="{'is-invalid': guestForm.controls['firstName'].invalid && (guestForm.controls['firstName'].touched ||guestForm.controls['firstName'].dirty)}"
+                >
+                <div class="invalid-feedback">
+                  <div *ngIf="guestForm.controls['firstName'].errors?.['required']">First Name is required</div>
+                </div>
               </div>
               <div class="form-group">
                 <img src="assets/images/front/user.png" alt="" class="icon">
-                <input type="text" class="form-control" placeholder="Last Name">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Last Name"
+                       formControlName="lastName"
+                        [ngClass]="{'is-invalid': guestForm.controls['lastName'].invalid && (guestForm.controls['lastName'].touched ||guestForm.controls['lastName'].dirty)}"
+                >
+                <div class="invalid-feedback">
+                  <div *ngIf="guestForm.controls['lastName'].errors?.['required']">Last Name is required</div>
+                </div>
               </div>
               <div class="form-group">
                 <img src="assets/images/front/user.png" alt="" class="icon">
-                <input type="text" class="form-control" placeholder="Email">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Email"
+                       formControlName="email"
+                        [ngClass]="{'is-invalid': guestForm.controls['email'].invalid && (guestForm.controls['email'].touched ||guestForm.controls['email'].dirty)}"
+                >
+                <div class="invalid-feedback">
+                  <div *ngIf="guestForm.controls['email'].errors?.['required']">Email is required</div>
+                  <div *ngIf="guestForm.controls['email'].errors?.['pattern']">Please enter a valid email
+                    address
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <img src="assets/images/front/user-sms-edit.png" alt="" class="icon">
-                <input type="text" class="form-control" placeholder="Confirm Email">
-              </div>
+<!--              <div class="form-group">-->
+<!--                <img src="assets/images/front/user-sms-edit.png" alt="" class="icon">-->
+<!--                <input type="text" class="form-control" placeholder="Confirm Email">-->
+<!--              </div>-->
               <div class="form-group buttons dflex">
                 <button type="button" class="btn btnsuccess btn-cancel">Cancel</button>
                 <button type="button" class="btn btnsuccess">Book</button>

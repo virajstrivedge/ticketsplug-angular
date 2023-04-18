@@ -20,10 +20,12 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
   quotationData: Quotation = {} as Quotation;
   isGuestShow: boolean = false;
   loginForm: FormGroup;
+  guestForm: FormGroup;
   loginSubmitted: boolean = false;
   currentUser: User = {} as User;
   private timerId!: number;
   private remainingTime: number = 900;
+  isFreeEvent: boolean = false;
   cardOptions: StripeCardElementOptions = {
     style: {
       base: {
@@ -65,10 +67,16 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password: ['', Validators.required]
     });
+    this.guestForm = this.fb.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+    });
     this.stripeTokenForm = this.fb.group({
       name: ['', [Validators.required]],
-      email: [this.currentUser?.email??'', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      email: [this.currentUser?.email ?? '', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
     });
+    this.isFreeEvent = this.quotationData?.totalAmount == 0;
   }
 
   ngOnInit(): void {
@@ -98,6 +106,7 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
       if (this.remainingTime <= 0) {
         clearInterval(this.timerId);
         console.log('finished');
+        this.cancel();
       }
     }, 1000);
   }
@@ -120,7 +129,7 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
 
   createToken() {
     console.log(this.stripeTokenForm.value)
-    if(this.stripeTokenForm.valid){
+    if (this.stripeTokenForm.valid) {
       const name = this.stripeTokenForm.get('name')?.value;
       const email = this.stripeTokenForm.get('email')?.value;
       this.stripeService
@@ -128,7 +137,7 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
         .subscribe((result) => {
           if (result.token) {
             console.log(result.token.id);
-            let data:any = {}
+            let data: any = {}
             data.bookingAmount = this.quotationData.ticketPrice;
             data.bookingCode = this.quotationData.bookingCode;
             data.bookingDate = this.quotationData.eventDate;
@@ -138,7 +147,7 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
             data.stripeCharges = this.quotationData.stripeCharges;
             data.stripeToken = result.token.id;
             data.tickets = this.quotationData.selectedTickets.map((ticket) => {
-              return{
+              return {
                 tickets: ticket.bookedSeats,
                 ticketsCategoryId: ticket.ticketCategoryId
               }
@@ -154,7 +163,7 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
             this.apiService.payment(data).subscribe((res) => {
               console.log(res);
 
-            },error => {
+            }, error => {
               console.log(error);
               this.cancel();
             });
@@ -166,12 +175,49 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  bookFreeEvent() {
+    let data: any = {}
+    data.bookingAmount = this.quotationData.ticketPrice;
+    data.bookingCode = this.quotationData.bookingCode;
+    data.bookingDate = this.quotationData.eventDate;
+    data.discountAmount = 0;
+    data.eventId = this.quotationData.eventId;
+    data.handlingFees = this.quotationData.handlingFees;
+    data.stripeCharges = this.quotationData.stripeCharges;
+    data.stripeToken = "";
+    data.tickets = this.quotationData.selectedTickets.map((ticket) => {
+      return {
+        tickets: ticket.bookedSeats,
+        ticketsCategoryId: ticket.ticketCategoryId
+      }
+    });
+    data.promoterCode = "";
+    data.totalAmount = this.quotationData.totalAmount;
+    data.guestUserRequest = {
+      email: this.currentUser.email,
+      firstName: this.currentUser.firstName,
+      lastName: this.currentUser.lastName,
+    }
+    data.organizingFees = this.quotationData.organizingFees;
+    this.apiService.payment(data).subscribe((res) => {
+      if(res.guestBooking==true){
+
+      }else {
+        console.log(res);
+      }
+
+    }, error => {
+      console.log(error);
+      this.cancel();
+    });
+  }
+
   cancel() {
-    let data:any = {}
+    let data: any = {}
     data.bookingCode = this.quotationData.bookingCode;
     data.eventId = this.quotationData.eventId;
     data.tickets = this.quotationData.selectedTickets.map((ticket) => {
-      return{
+      return {
         tickets: ticket.bookedSeats,
         ticketsCategoryId: ticket.ticketCategoryId
       }
@@ -179,7 +225,7 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
 
     this.apiService.releaseQuotation(data).subscribe((res) => {
       this.router.navigate(['/']);
-    },error => {
+    }, error => {
       this.router.navigate(['/']);
     });
 
