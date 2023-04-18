@@ -1,0 +1,16 @@
+.StripeElement {
+  display: block;
+  width: 100%;
+  background-clip: padding-box;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  background: #FFFFFF;
+  border-radius: 22px;
+  margin-bottom: 0;
+  padding: 10px 8px 9px 22px;
+  outline: 0;
+  //font-family:josefinsans-medium;
+  //font-size: 1rem;
+  border: 1px solid #CA442E;
+}

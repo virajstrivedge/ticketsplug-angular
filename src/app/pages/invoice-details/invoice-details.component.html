@@ -1,112 +1,174 @@
 <section class="invoice-details-content without-login">
-    <div class="container">
-        <div class="invoice-details">
-            <div class="ticket-left-content text-center">
+  <div class="container">
+    <div class="invoice-details">
+      <div class="ticket-left-content text-center">
                 <span class="content">
                     Your time lift to book ticket
                 </span>
-                <span class="time-content">
-                    15min(s) 50sec(s)
+        <span class="time-content">
+                    {{minutes}} min(s) {{seconds}} sec(s)
                 </span>
+      </div>
+      <div class="payment-details-content">
+        <div class="booking-content row">
+          <div class="login-register col-lg-5" *ngIf="currentUser?.userId">
+            <div class="title-content">
+              <span class="span-title">Enter your card details</span>
             </div>
-            <div class="payment-details-content">
-                <div class="booking-content row">
-                    <div class="login-register col-lg-4">
-                        <div class="title-content">
-                            <span class="span-title">Provide your Details</span>
-                            <span class="content">We'll send you E-Ticket on your provided email.</span>
-                        </div>
-                        <!-- <form action="" class="register">
-                            <div class="form-group">
-                                <img src="assets/images/front/user.png" alt="" class="icon">
-                                <input type="text" class="form-control" placeholder="First Name">
-                            </div>
-                            <div class="form-group">
-                                <img src="assets/images/front/user.png" alt="" class="icon">
-                                <input type="text" class="form-control" placeholder="Last Name">
-                            </div>
-                            <div class="form-group">
-                                <img src="assets/images/front/user.png" alt="" class="icon">
-                                <input type="text" class="form-control" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <img src="assets/images/front/user-sms-edit.png" alt="" class="icon">
-                                <input type="text" class="form-control" placeholder="Confirm Email">
-                            </div>
-                            <div class="form-group buttons">
-                                <button class="btn btnsuccess btn-cancel">Cancel</button>
-                                <button class="btn btnsuccess">Book</button>
-                            </div>
-                            <p class="account-link">Already have an account?  <a routerlink="#">Sign In Now</a></p>
-                        </form> -->
-                        <form action="" class="login">
-                            <div class="form-group">
-                                <img src="assets/images/front/user.png" alt="" class="icon">
-                                <input type="text" class="form-control" placeholder="Enter Email">
-                            </div>
-                            <div class="form-group">
-                                <img src="assets/images/front/user.png" alt="" class="icon">
-                                <input type="text" class="form-control" placeholder="Enter Password">
-                            </div>
-                            <div class="form-group buttons text-end">
-                                <button class="btn btnsuccess">Login</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="booking-info-price col-lg-8">
-                        <div class="event-name">
-                            Strivedge Test
-                        </div>
-                        <div class="booking-info">
-                        <div class="booking-info-content">
-                            <div class="date-time">
-                            <div class="date">Sat, 15 April, 2023</div>
-                            <div class="time">12:00 PM IST</div>
-                            </div>
-                            <div class="venue-content">
-                            <div class="content">
-                                <span><img src="assets/images/front/location-venue.png" alt=""></span>
-                                <span class="venue"> Ahmedabad, Gujarat, India </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ticket-type">
-                            S2: 1 Tickets(s)
-                        </div>
-                        </div>
-                        <div class="booking-price-info">
-                        <div class="tableresponsive table-responsive-xxl">
-                            <table>
-                                <tbody>
-                                <tr>
-                                    <td>Sub Totel</td>
-                                    <td class="text-end">$0.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Convenince Fee</td>
-                                    <td class="text-end">$0.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Handling Fee</td>
-                                    <td class="text-end">$0.00</td>
-                                </tr>
-                                <tr>
-                                    <td>Internet Handling Fee</td>
-                                    <td class="text-end">$0.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="total">Total:</td>
-                                    <td class="price text-end">$120</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            </div>
-                        </div>
-                    </div>
+            <form [formGroup]="stripeTokenForm" class="register">
+              <div class="form-group">
+            <ngx-stripe-card
+              [options]="cardOptions"
+              [elementsOptions]="elementsOptions"
+              (change)="onCardChange($event)"
+            ></ngx-stripe-card>
+              </div>
+              <div class="form-group">
+                <img src="assets/images/front/user.png" alt="" class="icon">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Name"
+                       formControlName="name"
+                       [ngClass]="{'is-invalid': stripeTokenForm.controls['name'].invalid && (stripeTokenForm.controls['name'].touched ||stripeTokenForm.controls['name'].dirty)}"
+                >
+                <div class="invalid-feedback">
+                  <div *ngIf="stripeTokenForm.controls['name'].errors?.['required']">Name is required</div>
                 </div>
+              </div>
+              <div class="form-group">
+                <img src="assets/images/front/user.png" alt="" class="icon">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Email"
+                       formControlName="email"
+
+                       [ngClass]="{'is-invalid': stripeTokenForm.controls['email'].invalid && (stripeTokenForm.controls['email'].touched ||stripeTokenForm.controls['email'].dirty)}"
+                >
+                <div class="invalid-feedback">
+                  <div *ngIf="stripeTokenForm.controls['email'].errors?.['required']">Email is required</div>
+                  <div *ngIf="stripeTokenForm.controls['email'].errors?.['pattern']">Please enter a valid email address</div>
+                </div>
+              </div>
+              <div class="form-group buttons dflex">
+                <button type="button" class="btn btnsuccess btn-cancel" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btnsuccess" [disabled]="!validCardForm" (click)="createToken()">Make payment</button>
+              </div>
+            </form>
+          </div>
+          <div class="login-register col-lg-5" *ngIf="!currentUser?.userId">
+            <div class="title-content">
+              <span class="span-title">Provide your Details</span>
+              <span class="content">We'll send you E-Ticket on your provided email.</span>
             </div>
+            <form action="" class="register" *ngIf="isGuestShow">
+              <div class="form-group">
+                <img src="assets/images/front/user.png" alt="" class="icon">
+                <input type="text" class="form-control" placeholder="First Name">
+              </div>
+              <div class="form-group">
+                <img src="assets/images/front/user.png" alt="" class="icon">
+                <input type="text" class="form-control" placeholder="Last Name">
+              </div>
+              <div class="form-group">
+                <img src="assets/images/front/user.png" alt="" class="icon">
+                <input type="text" class="form-control" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <img src="assets/images/front/user-sms-edit.png" alt="" class="icon">
+                <input type="text" class="form-control" placeholder="Confirm Email">
+              </div>
+              <div class="form-group buttons dflex">
+                <button type="button" class="btn btnsuccess btn-cancel">Cancel</button>
+                <button type="button" class="btn btnsuccess">Book</button>
+              </div>
+              <p class="account-link">Already have an account? <a (click)="isGuestShow=!isGuestShow">Sign In Now</a></p>
+            </form>
+            <form [formGroup]="loginForm" class="login" *ngIf="!isGuestShow">
+              <div class="form-group">
+                <img src="assets/images/front/user.png" alt="" class="icon">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Enter Email"
+                       formControlName="email"
+                       [ngClass]="{'is-invalid': loginForm.controls['email'].invalid && (loginForm.controls['email'].touched ||loginForm.controls['email'].dirty || loginSubmitted)}"
+                >
+                <div class="invalid-feedback">
+                  <div *ngIf="loginForm.controls['email'].errors?.['required']">Email is required</div>
+                  <div *ngIf="loginForm.controls['email'].errors?.['pattern']">Please enter a valid email address</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <img src="assets/images/front/user.png" alt="" class="icon">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Enter Password"
+                       formControlName="password"
+                       [ngClass]="{'is-invalid': loginForm.controls['password'].invalid && (loginForm.controls['password'].touched ||loginForm.controls['password'].dirty || loginSubmitted)}"
+                >
+                <div class="invalid-feedback">
+                  <div *ngIf="loginForm.controls['password'].errors?.['required']">Email is required</div>
+                </div>
+              </div>
+              <div class="form-group buttons text-end">
+                <button class="btn btnsuccess" type="button" (click)="signIn()">Login</button>
+              </div>
+              <p class="account-link">Or continue as guest <a (click)="isGuestShow=!isGuestShow">Continue</a></p>
+            </form>
+          </div>
+          <div class="booking-info-price col-lg-7">
+            <div class="event-name">
+              {{quotationData.eventName}}
+            </div>
+            <div class="booking-info">
+              <div class="booking-info-content">
+                <div class="date-time">
+                  <div class="date">{{quotationData.eventDateString |date :'E,dd LLL, yyyy'}}</div>
+                  <div class="time">{{quotationData.eventTimeString}} {{quotationData.timezoneShort}}</div>
+                </div>
+                <div class="venue-content">
+                  <div class="content">
+                    <span><img src="assets/images/front/location-venue.png" alt=""></span>
+                    <span class="venue"> {{quotationData.address}} </span>
+                  </div>
+                </div>
+              </div>
+              <div class="ticket-type" *ngFor="let ticket of quotationData.selectedTickets">
+                {{ticket.ticketCategory}}: {{ticket.bookedSeats}} Tickets(s)
+              </div>
+            </div>
+            <div class="booking-price-info">
+              <div class="tableresponsive table-responsive-xxl">
+                <table>
+                  <tbody>
+                  <tr>
+                    <td>Sub Totel</td>
+                    <td class="text-end">${{quotationData.ticketPrice |number}}</td>
+                  </tr>
+                  <tr>
+                    <td>Convenince Fee</td>
+                    <td class="text-end">${{quotationData.organizingFees |number}}</td>
+                  </tr>
+                  <tr>
+                    <td>Handling Fee</td>
+                    <td class="text-end">${{quotationData.handlingFees |number}}</td>
+                  </tr>
+                  <tr>
+                    <td>Internet Handling Fee</td>
+                    <td class="text-end">${{quotationData.stripeCharges |number}}</td>
+                  </tr>
+                  <tr>
+                    <td class="total">Total:</td>
+                    <td class="price text-end">${{quotationData.totalAmount |number}}</td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 <!-- <section class="invoice-details-content with-login">
     <div class="container">
@@ -251,24 +313,26 @@
     </div>
 </section> -->
 <section class="share-with-friends-content">
-    <div class="container">
-        <div class="title">
-            <span>Share With Friends</span>
-        </div>
-        <ul class="share-with-friends">
-            <li class="facebook">
-                <a href=""><span><i class='bx bxl-facebook'></i></span></a>
-            </li>
-            <li class="twitter">
-                <a href=""><span><i class='bx bxl-twitter' ></i></span></a>
-            </li>
-            <li class="google-plus">
-                <a href=""><span><i class='bx bxl-google-plus' ></i></span></a>
-            </li>
-            <li class="linkdin">
-                <a href=""><span><i class='bx bxl-linkedin' ></i></span></a>
-            </li>
-        </ul>
+  <div class="container">
+    <div class="title">
+      <span>Share With Friends</span>
     </div>
+    <ul class="share-with-friends">
+      <li class="facebook">
+        <a href=""><span><i class='bx bxl-facebook'></i></span></a>
+      </li>
+      <li class="twitter">
+        <a href=""><span><i class='bx bxl-twitter'></i></span></a>
+      </li>
+      <li class="google-plus">
+        <a href=""><span><i class='bx bxl-google-plus'></i></span></a>
+      </li>
+      <li class="linkdin">
+        <a href=""><span><i class='bx bxl-linkedin'></i></span></a>
+      </li>
+    </ul>
+  </div>
 </section>
 <app-footer></app-footer>
+
+

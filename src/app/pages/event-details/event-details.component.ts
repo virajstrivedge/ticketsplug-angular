@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ApiService} from "../../shared/services/api.service";
 import {HttpParams} from "@angular/common/http";
 import {EventDetails, EventResponse} from "../../shared/models/event";
@@ -15,7 +15,10 @@ export class EventDetailsComponent implements OnInit {
   eventName: string = '';
   eventDetails: EventDetails= {} as EventDetails;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService,private modalService: NgbModal) {
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private apiService: ApiService,
+              private modalService: NgbModal) {
     const {hostname} = window.location
     const [subdomain] = hostname.split('.')
     this.eventName = subdomain;
@@ -48,6 +51,11 @@ export class EventDetailsComponent implements OnInit {
   openTicketModal() {
     const modalRef = this.modalService.open(SelectTicketModalComponent,{backdrop: 'static', keyboard: false,centered:true,size:'lg'});
     modalRef.componentInstance.eventDetails = this.eventDetails;
+    modalRef.closed.subscribe(res=>{
+      if(res.eventId){
+        this.router.navigateByUrl('/invoice-details',{state:res})
+      }
+    })
 
   }
 

@@ -5,8 +5,8 @@
                 <div class="logo">
                     <img src="assets/images/front/logo.png" alt="">
                 </div>
-                <div class="logout" *ngIf="false">
-                    <a href="" class="btn btnsignup">Logout</a>
+                <div class="logout" *ngIf="isLoggedIn">
+                    <a href="" class="btn btnsignup" (click)="logOut()">Logout</a>
                 </div>
             </div>
         </div>

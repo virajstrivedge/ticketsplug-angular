@@ -3,6 +3,7 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {EventDetails, EventTicketsListCart} from "../../models/event";
 import {ApiService} from "../../services/api.service";
 import {Quotation} from "../../models/quotationResponse";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-select-ticket-modal',
@@ -14,11 +15,13 @@ export class SelectTicketModalComponent implements OnInit{
   eventTicketList: EventTicketsListCart[] = [];
   quotation:Quotation= {} as Quotation;
   isProceed:boolean = false;
-  constructor(public activeModal: NgbActiveModal, private apiService:ApiService) {
+  constructor(public activeModal: NgbActiveModal,
+              private apiService:ApiService,
+              private router:Router
+              ) {
   }
 
   ngOnInit(): void {
-    console.log(this.eventDetails)
     this.eventTicketList = this.eventDetails?.eventTicketsList.map(ticket => {
       return {
         ...ticket,
@@ -69,5 +72,9 @@ export class SelectTicketModalComponent implements OnInit{
       console.log(error)
     })
 
+  }
+
+  proceedToPay() {
+    this.activeModal.close(this.quotation)
   }
 }

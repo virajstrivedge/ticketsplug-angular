@@ -42,15 +42,15 @@
           <tbody>
           <tr>
             <td>Sub Totel</td>
-            <td class="text-end">${{quotation.ticketPrice}}</td>
+            <td class="text-end">${{quotation.ticketPrice |number}}</td>
           </tr>
           <tr>
             <td>Convenience Fee</td>
-            <td class="text-end">${{quotation.organizingFees}}</td>
+            <td class="text-end">${{quotation.organizingFees |number}}</td>
           </tr>
           <tr>
             <td>Handling Fee</td>
-            <td class="text-end">${{quotation.handlingFees}}</td>
+            <td class="text-end">${{quotation.handlingFees |number}}</td>
           </tr>
           <tr>
             <td>Internet Handling Fee</td>
@@ -58,7 +58,7 @@
           </tr>
           <tr>
             <td class="total">Total:</td>
-            <td class="price text-end">${{quotation.totalAmount}}</td>
+            <td class="price text-end">${{quotation.totalAmount |number}}</td>
           </tr>
           </tbody>
         </table>
@@ -68,10 +68,10 @@
 </div>
 <div class="modal-footer">
   <div class="d-flex" *ngIf="!isProceed">
-    <span class="total">Total: <span class="price">${{totalSelectedTicketsPrice}}</span></span>
+    <span class="total">Total: <span class="price">${{totalSelectedTicketsPrice  |number}}</span></span>
     <button type="button" class="btn btnsuccess" (click)="goToDetails()">Proceed</button>
   </div>
   <button *ngIf="isProceed" type="button" class="btn btnsuccess Proceed-checkout"
-          (click)="activeModal.close('Close click')">Proceed to pay
+          (click)="proceedToPay()">Proceed to pay
   </button>
 </div>
