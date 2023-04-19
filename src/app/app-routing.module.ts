@@ -4,6 +4,7 @@ import {EventDetailsComponent} from "./pages/event-details/event-details.compone
 import {InvoiceDetailsComponent} from "./pages/invoice-details/invoice-details.component";
 import {TicketBookingDetailsComponent} from "./pages/ticket-booking-details/ticket-booking-details.component";
 import {HomeComponent} from "./pages/home/home.component";
+import { CustomEventComponent } from './pages/custom-event/custom-event.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: 'custom-event',
-    component: TicketBookingDetailsComponent
+    component: CustomEventComponent
   },
   {
     path: 'home',
