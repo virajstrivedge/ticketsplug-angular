@@ -1,76 +1,16 @@
 <section class="invoice-details-content payment-successfully">
     <div class="container">
         <div class="invoice-details">
-            <div class="ticket-left-content text-center">
+            <div class="ticket-left-content text-center" *ngIf="downloadInvoiceUrl">
                 <div class="buttons">
-                    <button class="btn btnsuccess">Download</button>
+                    <a class="btn btnsuccess" [href]="downloadInvoiceUrl">Download</a>
                 </div>
                 <span class="content">
                         Booking payment completed successfully, you can download ticket directly from webpage or check email for ticket and receipt
                 </span>
             </div>
-            <div class="event-banner">
-                <div class="event-banner">
-                    <img src="assets/images/front/events-banner.png" alt="">
-                </div>
-            </div>
-            <div class="payment-details-content">
-                <div class="event-name">
-                    Strivedge Test
-                </div>
-                <div class="booking-content">
-                    <div class="booking-info-barcode">
-                        <div class="booking-info">
-                        <div class="booking-info-content">
-                            <div class="date-time">
-                            <div class="date">Sat, 15 April, 2023</div>
-                            <div class="time">12:00 PM IST</div>
-                            </div>
-                            <div class="venue-content">
-                            <div class="content">
-                                <span><img src="assets/images/front/location-venue.png" alt=""></span>
-                                <span class="venue"> Ahmedabad, Gujarat, India </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ticket-type">
-                            S2: 1 Tickets(s)
-                        </div>
-                        </div>
-                        <div class="barcode">
-                            <img src="assets/images/front/barcode.png" alt="">
-                        </div>
-                    </div>
-                    <div class="booking-price-info">
-                      <div class="tableresponsive table-responsive-xxl">
-                          <table>
-                            <tbody>
-                              <tr>
-                                <td>Sub Totel</td>
-                                <td class="text-end">$0.00</td>
-                              </tr>
-                              <tr>
-                                <td>Convenince Fee</td>
-                                <td class="text-end">$0.00</td>
-                              </tr>
-                              <tr>
-                                <td>Handling Fee</td>
-                                <td class="text-end">$0.00</td>
-                              </tr>
-                              <tr>
-                                <td>Internet Handling Fee</td>
-                                <td class="text-end">$0.00</td>
-                              </tr>
-                              <tr>
-                                <td class="total">Total:</td>
-                                <td class="price text-end">$120</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div [innerHTML]="htmlSanitizer.bypassSecurityTrustHtml(invoiceData?.['invoice'])"></div>
+
         </div>
     </div>
 </section>

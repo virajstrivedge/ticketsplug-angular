@@ -201,15 +201,20 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
     }
     data.organizingFees = this.quotationData.organizingFees;
     this.apiService.payment(data).subscribe((res) => {
-      if(res.guestBooking==true){
+      if(res.data.guestBooking==true){
 
       }else {
-        console.log(res);
+        console.log('ss',res);
+        this.router.navigateByUrl('/booking-ticket-details', { state: res.data })
       }
 
     }, error => {
+      if( error.code != 2011 ){
+        this.cancel();
+      }
+      //open toster error that you are already member of this site please login
       console.log(error);
-      this.cancel();
+
     });
   }
 
@@ -248,6 +253,45 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
   }
 
   guestFreeBookBtn() {
+      if(this.guestForm.invalid){
+        return
+      }
+      let data: any = {}
+      data.bookingAmount = this.quotationData.ticketPrice;
+      data.bookingCode = this.quotationData.bookingCode;
+      data.bookingDate = this.quotationData.eventDate;
+      data.discountAmount = 0;
+      data.eventId = this.quotationData.eventId;
+      data.handlingFees = this.quotationData.handlingFees;
+      data.stripeCharges = this.quotationData.stripeCharges;
+      data.stripeToken = "";
+      data.tickets = this.quotationData.selectedTickets.map((ticket) => {
+        return {
+          tickets: ticket.bookedSeats,
+          ticketsCategoryId: ticket.ticketCategoryId
+        }
+      });
+      data.promoterCode = "";
+      data.totalAmount = this.quotationData.totalAmount;
+      data.guestUserRequest = {
+        email: this.guestForm.get('email')?.value,
+        firstName: this.guestForm.get('firstName')?.value,
+        lastName: this.guestForm.get('lastName')?.value,
+      }
+      data.organizingFees = this.quotationData.organizingFees;
+      this.apiService.payment(data).subscribe((res) => {
+        if(res.guestBooking==true){
 
+        }else {
+          console.log(res);
+        }
+      },error => {
+        if( error.code != 2011 ){
+          this.cancel();
+        }
+        console.log(error);
+        //open toster error that you are already member of this site please login
+
+      });
   }
 }

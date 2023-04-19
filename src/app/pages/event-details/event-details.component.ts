@@ -22,11 +22,11 @@ export class EventDetailsComponent implements OnInit {
     const {hostname} = window.location
     const [subdomain] = hostname.split('.')
     this.eventName = subdomain;
-
+    this.getEventDetails();
   }
 
   ngOnInit(): void {
-    this.getEventDetails();
+
 
   }
 
@@ -40,7 +40,7 @@ export class EventDetailsComponent implements OnInit {
       console.log(error)
       //redirect to www.google.com
       //find host name
-      window.location.href = 'https://ticketsplug.com/';
+      window.location.href = 'https://ticketsplug.com/home';
     })
   }
 

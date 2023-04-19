@@ -120,8 +120,8 @@
               <!--              </div>-->
               <div class="form-group buttons dflex">
                 <button type="button" class="btn btnsuccess btn-cancel" (click)="cancel()">Cancel</button>
-                <button type="button" class="btn btnsuccess" (click)="guestBookBtn()">Book</button>
-<!--                <button  type="button" class="btn btnsuccess" (click)="guestFreeBookBtn()">Book</button>-->
+                <button *ngIf="!isFreeEvent" type="button" class="btn btnsuccess" (click)="guestBookBtn()">Book</button>
+                <button *ngIf="isFreeEvent"  type="button" class="btn btnsuccess" (click)="guestFreeBookBtn()">Book</button>
               </div>
               <p class="account-link">Already have an account? <a (click)="isGuestShow=!isGuestShow">Sign In Now</a></p>
             </form>
