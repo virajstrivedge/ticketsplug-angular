@@ -5,6 +5,7 @@ import {InvoiceDetailsComponent} from "./pages/invoice-details/invoice-details.c
 import {TicketBookingDetailsComponent} from "./pages/ticket-booking-details/ticket-booking-details.component";
 import {HomeComponent} from "./pages/home/home.component";
 import { CustomEventComponent } from './pages/custom-event/custom-event.component';
+import {BrowseEventComponent} from "./pages/browse-event/browse-event.component";
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path:'browse-events',
+    component:BrowseEventComponent
   }
 ];
 

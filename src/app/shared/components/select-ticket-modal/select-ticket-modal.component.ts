@@ -33,6 +33,9 @@ export class SelectTicketModalComponent implements OnInit{
   get totalSelectedTicketsPrice():number {
     return this.eventTicketList.reduce((acc, ticket) => acc + ticket.addedQuantity * ticket.price, 0);
   }
+  get totalSelectedTickets():number {
+    return this.eventTicketList.reduce((acc, ticket) => acc + ticket.addedQuantity, 0);
+  }
 
   addQuantity(ticket: EventTicketsListCart) {
     if (ticket.addedQuantity < ticket.availableSeats) {
@@ -77,4 +80,5 @@ export class SelectTicketModalComponent implements OnInit{
   proceedToPay() {
     this.activeModal.close(this.quotation)
   }
+
 }

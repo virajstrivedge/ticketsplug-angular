@@ -16,6 +16,7 @@ import {NgxStripeModule} from "ngx-stripe";
 import { LeavePaymentModalComponent } from './shared/components/leave-payment-modal/leave-payment-modal.component';
 import { TicketBookingDetailsComponent } from './pages/ticket-booking-details/ticket-booking-details.component';
 import { CustomEventComponent } from './pages/custom-event/custom-event.component';
+import { BrowseEventComponent } from './pages/browse-event/browse-event.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CustomEventComponent } from './pages/custom-event/custom-event.componen
     LeavePaymentModalComponent,
     TicketBookingDetailsComponent,
     CustomEventComponent,
+    BrowseEventComponent,
   ],
   imports: [
     BrowserModule,
