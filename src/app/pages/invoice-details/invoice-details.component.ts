@@ -281,8 +281,9 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
       data.organizingFees = this.quotationData.organizingFees;
       this.apiService.payment(data).subscribe((res) => {
         if(res.guestBooking==true){
-
+          this.router.navigateByUrl('/booking-ticket-details', { state: res.data })
         }else {
+          this.router.navigateByUrl('/booking-ticket-details', { state: res.data })
           console.log(res);
         }
       },error => {
