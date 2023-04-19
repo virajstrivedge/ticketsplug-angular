@@ -939,7 +939,8 @@
                 // right: 0;
                 // right: 35px;
                 // right: 40px;
-                right: 120px;
+                // right: 120px;
+                right: 20px;
                 .text{
                   &.free{
                     position: absolute;
@@ -956,12 +957,12 @@
                     }
                   }
                 }
-                @media(max-width: 1199px){
-                  right: 60px;
-                }
-                @media(max-width: 767px){
-                  right: 30px;
-                }
+                // @media(max-width: 1199px){
+                //   right: 60px;
+                // }
+                // @media(max-width: 767px){
+                //   right: 30px;
+                // }
               }
             }
             .content-wrap{
@@ -1017,6 +1018,48 @@
             }
             @media(max-width: 991px){
               padding-top: 20px;
+            }
+          }
+          .ticket-buttons{
+            text-align: center;
+            //position: absolute;
+            //bottom: 0;
+            //left: 0;
+            //right: 0;
+            margin: 0 auto;
+            span{
+              &.ticket{
+                display: block;
+                font-family: 'josefinsans-regular';
+                font-size: 1rem;
+                line-height: 20px;
+                text-align: center;
+                color: $btn-bg-color;
+                padding-bottom: 10px;
+              }
+            }
+            .btn{
+              &.btnsuccess{
+                background: linear-gradient(0deg, $btn-bg-color, $btn-bg-color), linear-gradient(182.78deg, rgba(254, 254, 254, 0) 2.3%, rgba(254, 254, 254, 0) 52.97%, rgba(254, 254, 254, 0.5) 97.68%);
+                border: 1.5px solid $btn-bg-color;
+                border-radius: 5px;
+                font-family: 'josefinsans-regular';
+                color: $White-color;
+                line-height: 18px;
+                font-size: 1.2rem;
+                letter-spacing: 0.05em;
+                padding: 14px 30px;
+                outline: 0;
+                box-shadow: unset;
+                @media(max-width: 1199px){
+                  font-size: 1rem;
+                  padding: 12px 24px;
+                }
+              }
+            }
+            @media(max-width: 991px){
+              position: relative;
+              padding: 15px 0;
             }
           }
           ul{
@@ -1707,6 +1750,7 @@
               -moz-appearance: none;
               text-align: center;
               box-shadow: unset;
+              -moz-appearance: textfield;
             }
             input[type=number]::-webkit-inner-spin-button,
             input[type=number]::-webkit-outer-spin-button {
