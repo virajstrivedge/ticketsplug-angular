@@ -26,6 +26,7 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
   private timerId!: number;
   private remainingTime: number = 900;
   isFreeEvent: boolean = false;
+  isGuestPaymentShow: boolean = false;
   cardOptions: StripeCardElementOptions = {
     style: {
       base: {
@@ -233,5 +234,20 @@ export class InvoiceDetailsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     clearInterval(this.timerId);
+  }
+
+  guestBookBtn() {
+    if(this.guestForm.invalid){
+      return
+    }
+    console.log(this.guestForm.value);
+    this.stripeTokenForm.patchValue({
+      email: this.guestForm.get('email')?.value,
+    });
+    this.isGuestPaymentShow = true;
+  }
+
+  guestFreeBookBtn() {
+
   }
 }

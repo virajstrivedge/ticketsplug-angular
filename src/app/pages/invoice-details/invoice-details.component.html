@@ -11,7 +11,7 @@
       </div>
       <div class="payment-details-content">
         <div class="booking-content row">
-          <div class="login-register col-lg-5" *ngIf="currentUser?.userId && !isFreeEvent">
+          <div class="login-register col-lg-5" *ngIf="(currentUser?.userId && !isFreeEvent) || (isGuestPaymentShow)">
             <div class="title-content">
               <span class="span-title">Enter your card details</span>
             </div>
@@ -27,7 +27,7 @@
                 <img src="assets/images/front/user.png" alt="" class="icon">
                 <input type="text"
                        class="form-control"
-                       placeholder="Name"
+                       placeholder="Name on card"
                        formControlName="name"
                        [ngClass]="{'is-invalid': stripeTokenForm.controls['name'].invalid && (stripeTokenForm.controls['name'].touched ||stripeTokenForm.controls['name'].dirty)}"
                 >
@@ -41,7 +41,7 @@
                        class="form-control"
                        placeholder="Email"
                        formControlName="email"
-
+                       readonly
                        [ngClass]="{'is-invalid': stripeTokenForm.controls['email'].invalid && (stripeTokenForm.controls['email'].touched ||stripeTokenForm.controls['email'].dirty)}"
                 >
                 <div class="invalid-feedback">
@@ -61,12 +61,12 @@
           </div>
           <div class="login-register col-lg-5" *ngIf="currentUser?.userId && isFreeEvent">
             <form>
-            <div class="form-group buttons dflex">
-              <button type="button" class="btn btnsuccess btn-cancel" (click)="cancel()">Cancel</button>
-              <button type="button" class="btn btnsuccess"  (click)="bookFreeEvent()">Make
-                payment
-              </button>
-            </div>
+              <div class="form-group buttons dflex">
+                <button type="button" class="btn btnsuccess btn-cancel" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btnsuccess" (click)="bookFreeEvent()">Make
+                  payment
+                </button>
+              </div>
             </form>
           </div>
           <div class="login-register col-lg-5" *ngIf="!currentUser?.userId">
@@ -74,7 +74,7 @@
               <span class="span-title">Provide your Details</span>
               <span class="content">We'll send you E-Ticket on your provided email.</span>
             </div>
-            <form [formGroup]="guestForm" class="register" *ngIf="isGuestShow">
+            <form [formGroup]="guestForm" class="register" *ngIf="isGuestShow && !isGuestPaymentShow">
               <div class="form-group">
                 <img src="assets/images/front/user.png" alt="" class="icon">
                 <input type="text"
@@ -93,7 +93,7 @@
                        class="form-control"
                        placeholder="Last Name"
                        formControlName="lastName"
-                        [ngClass]="{'is-invalid': guestForm.controls['lastName'].invalid && (guestForm.controls['lastName'].touched ||guestForm.controls['lastName'].dirty)}"
+                       [ngClass]="{'is-invalid': guestForm.controls['lastName'].invalid && (guestForm.controls['lastName'].touched ||guestForm.controls['lastName'].dirty)}"
                 >
                 <div class="invalid-feedback">
                   <div *ngIf="guestForm.controls['lastName'].errors?.['required']">Last Name is required</div>
@@ -105,7 +105,7 @@
                        class="form-control"
                        placeholder="Email"
                        formControlName="email"
-                        [ngClass]="{'is-invalid': guestForm.controls['email'].invalid && (guestForm.controls['email'].touched ||guestForm.controls['email'].dirty)}"
+                       [ngClass]="{'is-invalid': guestForm.controls['email'].invalid && (guestForm.controls['email'].touched ||guestForm.controls['email'].dirty)}"
                 >
                 <div class="invalid-feedback">
                   <div *ngIf="guestForm.controls['email'].errors?.['required']">Email is required</div>
@@ -114,13 +114,14 @@
                   </div>
                 </div>
               </div>
-<!--              <div class="form-group">-->
-<!--                <img src="assets/images/front/user-sms-edit.png" alt="" class="icon">-->
-<!--                <input type="text" class="form-control" placeholder="Confirm Email">-->
-<!--              </div>-->
+              <!--              <div class="form-group">-->
+              <!--                <img src="assets/images/front/user-sms-edit.png" alt="" class="icon">-->
+              <!--                <input type="text" class="form-control" placeholder="Confirm Email">-->
+              <!--              </div>-->
               <div class="form-group buttons dflex">
-                <button type="button" class="btn btnsuccess btn-cancel">Cancel</button>
-                <button type="button" class="btn btnsuccess">Book</button>
+                <button type="button" class="btn btnsuccess btn-cancel" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btnsuccess" (click)="guestBookBtn()">Book</button>
+<!--                <button  type="button" class="btn btnsuccess" (click)="guestFreeBookBtn()">Book</button>-->
               </div>
               <p class="account-link">Already have an account? <a (click)="isGuestShow=!isGuestShow">Sign In Now</a></p>
             </form>

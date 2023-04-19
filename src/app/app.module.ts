@@ -15,6 +15,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {NgxStripeModule} from "ngx-stripe";
 import { LeavePaymentModalComponent } from './shared/components/leave-payment-modal/leave-payment-modal.component';
 import { TicketBookingDetailsComponent } from './pages/ticket-booking-details/ticket-booking-details.component';
+import { CustomEventComponent } from './pages/custom-event/custom-event.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TicketBookingDetailsComponent } from './pages/ticket-booking-details/ti
     SelectTicketModalComponent,
     LeavePaymentModalComponent,
     TicketBookingDetailsComponent,
+    CustomEventComponent,
   ],
   imports: [
     BrowserModule,
