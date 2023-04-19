@@ -8,8 +8,11 @@
                     </a>
                 </div>
                 <ul class="menu">
-                    <li>
+                    <li routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }">
                       <a routerLink="/custom-event">Custom Event</a>
+                    </li>
+                    <li routerLinkActive="active"  [routerLinkActiveOptions]="{ exact: true }">
+                      <a routerLink="/browse-events">Browse Event</a>
                     </li>
                   </ul>
                 <div class="logout" *ngIf="isLoggedIn">
