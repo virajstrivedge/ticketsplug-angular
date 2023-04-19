@@ -17,7 +17,6 @@ import { LeavePaymentModalComponent } from './shared/components/leave-payment-mo
 import { TicketBookingDetailsComponent } from './pages/ticket-booking-details/ticket-booking-details.component';
 import { CustomEventComponent } from './pages/custom-event/custom-event.component';
 import { BrowseEventComponent } from './pages/browse-event/browse-event.component';
-import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
 
 @NgModule({
   declarations: [
@@ -39,7 +38,6 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
-    SweetAlert2Module.forRoot(),
     NgxStripeModule.forRoot('pk_live_fLA9xt0XKhjnqIYyAZQA39aP007m4vWHM7'),
   ],
   providers: [],
