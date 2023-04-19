@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./browse-event.component.scss']
 })
 export class BrowseEventComponent {
-
+  active = 1;
 }
