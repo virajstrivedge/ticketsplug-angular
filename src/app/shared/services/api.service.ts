@@ -34,4 +34,7 @@ export class ApiService {
     }
     return this._http.post<any>(`https://api.ticketsplug.com/api/v1/events/booking/payment`,data,{headers})
   }
+  contactUs(data:any):Observable<any>{
+    return this._http.post<any>(`https://api.ticketsplug.com/api/v1/contactus/create`,data)
+  }
 }

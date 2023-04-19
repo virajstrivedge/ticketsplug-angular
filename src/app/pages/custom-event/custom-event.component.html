@@ -1,109 +1,163 @@
 <!-- <p>custom-event works!</p> -->
 
 <div class="inner-content">
-    <!-- Home banner -->
-    <section class="home-banner customization">
-      <div class="container">
-        <div class="banner-content">
-            <div class="content">
-              <span class="sub-title">Customized events</span>
-              <h2>Event Customization</h2>
-              <p>Design a stand-out digital event environment without code.</p>
-              <div class="buttons">
-                <a href="" class="btn btn-talk">Discover Features</a>
-              </div>
-            </div>
+  <!-- Home banner -->
+  <section class="home-banner customization">
+    <div class="container">
+      <div class="banner-content">
+        <div class="content">
+          <span class="sub-title">Customized events</span>
+          <h2>Event Customization</h2>
+          <p>Design a stand-out digital event environment without code.</p>
+          <div class="buttons">
+            <a href="" class="btn btn-talk">Discover Features</a>
+          </div>
         </div>
       </div>
-    </section>
-    
-    <!-- Contact form -->
-    <section class="contact-us-content">
-        <div class="container">
-            <div class="title">
-                <h2>Let's Start a Conversation</h2>
+    </div>
+  </section>
+
+  <!-- Contact form -->
+  <section class="contact-us-content">
+    <div class="container">
+      <div class="title">
+        <h2>Let's Start a Conversation</h2>
+      </div>
+      <div class="contact-details-form">
+        <!-- <div class="row"> -->
+        <!-- <div class="col-lg-5">
+            <div class="contact-details">
+                <ul class="details">
+                    <li class="email">
+                        <a href="mailto:abcd@gmail.com">
+                            <span class="img"><img src="assets/images/front/contact-message.png" alt=""></span>
+                            <span>abcd@gmail.com</span>
+                        </a>
+                    </li>
+                    <li class="phone">
+                        <a href="tel:+1 (012) 3456789">
+                            <span class="img"><img src="assets/images/front/contact-phone.png" alt=""></span>
+                            <span>+1 (012) 3456789</span>
+                        </a>
+                    </li>
+                    <li class="address">
+                        <a href="#">
+                            <span class="img"><img src="assets/images/front/contact-map.png" alt=""></span>
+                            <span>Street: 3889 Del Dew Drive<br>
+                                City: Temple Hills</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="contact-details-form">
-                <!-- <div class="row"> -->
-                    <!-- <div class="col-lg-5">
-                        <div class="contact-details">
-                            <ul class="details">
-                                <li class="email">
-                                    <a href="mailto:abcd@gmail.com">
-                                        <span class="img"><img src="assets/images/front/contact-message.png" alt=""></span>
-                                        <span>abcd@gmail.com</span>
-                                    </a>
-                                </li>
-                                <li class="phone">
-                                    <a href="tel:+1 (012) 3456789">
-                                        <span class="img"><img src="assets/images/front/contact-phone.png" alt=""></span>
-                                        <span>+1 (012) 3456789</span>
-                                    </a>
-                                </li>
-                                <li class="address">
-                                    <a href="#">
-                                        <span class="img"><img src="assets/images/front/contact-map.png" alt=""></span>
-                                        <span>Street: 3889 Del Dew Drive<br>
-                                            City: Temple Hills</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> -->
-                    <div class="col-lg-12">
-                        <div class="contact-form">
-                            <form actions="">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <input type="text" name="name" id="name" placeholder="Enter Name">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <input type="text" name="phonenumber" id="phonenumber" placeholder="Phone Number">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <input type="text" name="email" id="email" placeholder="Enter Email">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select name="category" id="category">
-                                                <option value="Select Category">Select Category</option>
-                                                <option value="I wanted to create an event">I wanted to create an event</option>
-                                                <option value="I am attending an event">I am attending an event</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <select name="query" id="query">
-                                                <option value="Select Query">Select Query</option>
-                                                <option value="Login and Registration">Login and Registration</option>
-                                                <option value="Account Information and Settings">Account Information and Settings</option>
-                                                <option value="Tickets and Inventory">Tickets and Inventory</option>
-                                                <option value="Reports and Analysis">Reports and Analysis</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <textarea name="" id="" placeholder="Message"></textarea>
-                                </div>
-                                <div class="form-group buttons">
-                                    <button type="button" class="btn btn-contact">Send Massage</button>
-                                </div>
-                            </form>
-                        </div>
+        </div> -->
+        <div class="col-lg-12">
+          <div class="contact-form">
+            <form [formGroup]="contactForm">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="text"
+                           name="name"
+                           id="name"
+                           placeholder="Enter Name"
+                           formControlName="name"
+                           [ngClass]="{'is-invalid': contactForm.controls['name'].invalid && (contactForm.controls['name'].touched ||contactForm.controls['name'].dirty || isFormSubmitted)}"
+                    >
+                    <div class="invalid-feedback">
+                      <div *ngIf="contactForm.controls['name'].errors?.['required']">Name is required</div>
                     </div>
-                <!-- </div> -->
-            </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="text"
+                           name="phonenumber"
+                           id="phonenumber"
+                           placeholder="Phone Number"
+                           formControlName="mobile"
+                           [ngClass]="{'is-invalid': contactForm.controls['mobile'].invalid && (contactForm.controls['mobile'].touched ||contactForm.controls['mobile'].dirty || isFormSubmitted)}"
+                    >
+                    <div class="invalid-feedback">
+                      <div *ngIf="contactForm.controls['mobile'].errors?.['required']">Phone Number is required</div>
+                      <div *ngIf="contactForm.controls['mobile'].errors?.['minlength']">Phone Number must be 10 digits</div>
+                      <div *ngIf="contactForm.controls['mobile'].errors?.['maxlength']">Phone Number must be 10 digits</div>
+                      <div *ngIf="contactForm.controls['mobile'].errors?.['pattern']">Please enter valid phone number
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="text"
+                           name="email"
+                           id="email"
+                           placeholder="Enter Email"
+                           formControlName="email"
+                           [ngClass]="{'is-invalid': contactForm.controls['email'].invalid && (contactForm.controls['email'].touched ||contactForm.controls['email'].dirty || isFormSubmitted)}"
+                    >
+                    <div class="invalid-feedback">
+                      <div *ngIf="contactForm.controls['email'].errors?.['required']">Email is required</div>
+                      <div *ngIf="contactForm.controls['email'].errors?.['pattern']">Email is invalid</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select name="category"
+                            id="category"
+                            formControlName="category"
+                            (change)="getQueries($event)"
+                            [ngClass]="{'is-invalid': contactForm.controls['category'].invalid && (contactForm.controls['category'].touched ||contactForm.controls['category'].dirty || isFormSubmitted)}"
+                    >
+                      <option *ngFor="let item of categories; index as i" [value]="item.id">
+                        {{item.name}}
+                      </option>
+                    </select>
+                    <div class="invalid-feedback">
+                      <div *ngIf="contactForm.controls['category'].errors?.['required']">Category is required</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <select name="query"
+                            id="query"
+                            formControlName="query"
+                            [ngClass]="{'is-invalid': contactForm.controls['query'].invalid && (contactForm.controls['query'].touched ||contactForm.controls['query'].dirty || isFormSubmitted)}"
+                    >
+                      <option *ngFor="let item of queryList; index as i" [value]="item.id">
+                        {{item.name}}
+                      </option>
+
+                    </select>
+                    <div class="invalid-feedback">
+                      <div *ngIf="contactForm.controls['query'].errors?.['required']">Query is required</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                                    <textarea
+
+                                      placeholder="Message"
+                                      formControlName="comment"
+                                      [ngClass]="{'is-invalid': contactForm.controls['comment'].invalid && (contactForm.controls['comment'].touched ||contactForm.controls['comment'].dirty || isFormSubmitted)}"
+                                    ></textarea>
+                <div class="invalid-feedback">
+                  <div *ngIf="contactForm.controls['comment'].errors?.['required']">Message is required</div>
+                </div>
+              </div>
+              <div class="form-group buttons">
+                <button type="button" class="btn btn-contact" (click)="submitForm()">Send Massage</button>
+              </div>
+            </form>
+          </div>
         </div>
-    </section>
+        <!-- </div> -->
+      </div>
+    </div>
+  </section>
 </div>
 <app-footer></app-footer>

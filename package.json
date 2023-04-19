@@ -21,6 +21,7 @@
     "@ng-bootstrap/ng-bootstrap": "^14.1.0",
     "@popperjs/core": "^2.11.6",
     "@stripe/stripe-js": "^1.52.1",
+    "@sweetalert2/ngx-sweetalert2": "^12.1.0",
     "bootstrap": "^5.2.3",
     "ngx-stripe": "^15.6.0",
     "rxjs": "~7.8.0",
