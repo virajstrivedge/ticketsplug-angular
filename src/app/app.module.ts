@@ -17,6 +17,7 @@ import { LeavePaymentModalComponent } from './shared/components/leave-payment-mo
 import { TicketBookingDetailsComponent } from './pages/ticket-booking-details/ticket-booking-details.component';
 import { CustomEventComponent } from './pages/custom-event/custom-event.component';
 import { BrowseEventComponent } from './pages/browse-event/browse-event.component';
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -40,7 +41,7 @@ import { BrowseEventComponent } from './pages/browse-event/browse-event.componen
     ReactiveFormsModule,
     NgxStripeModule.forRoot('pk_live_fLA9xt0XKhjnqIYyAZQA39aP007m4vWHM7'),
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

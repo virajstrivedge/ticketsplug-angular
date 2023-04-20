@@ -1,5 +1,5 @@
-<section class="event-details-content blur-bg">
-  <div class="background-blur-class" style="background: url('assets/images/front/events-banner.png');"> </div>
+<section class="event-details-content" [ngClass]="{'blur-bg':checkIfEventIsPast}">
+  <div *ngIf="eventDetails.eventImages && checkIfEventIsPast" class="background-blur-class" [style.background-image]="'url('+eventDetails.eventImages[0].imageUrl+')'"> </div>
   <div class="container">
     <div class="event-banner">
       <img *ngIf="eventDetails.eventImages" [src]=" eventDetails.eventImages[0].imageUrl" alt="">
@@ -42,8 +42,9 @@
             </div>
             <div class="col-sm-6 col-lg-4">
               <div class="ticket-buttons">
-                <span *ngIf="eventDetails?.showRemainingTickets" class="ticket">{{getAvailableTickets()}} Tickets Left</span>
-                              <button class="btn btnsuccess" (click)="openTicketModal()">Book Now</button>
+                <span *ngIf="eventDetails?.showRemainingTickets && !checkIfEventIsPast" class="ticket">{{getAvailableTickets()}} Tickets Left</span>
+                <span *ngIf="eventDetails.eventSoldOut" class="ticket">SOLD OUT</span>
+                              <button *ngIf="!checkIfEventIsPast && !eventDetails.eventSoldOut" class="btn btnsuccess" (click)="openTicketModal()">Book Now</button>
 <!--                <button class="btn btn-secondary" (click)="openTicketModal()">Book Now</button>-->
               </div>
             </div>

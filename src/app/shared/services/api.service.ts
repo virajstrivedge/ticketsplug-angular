@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
 import {EventResponse} from "../models/event";
 import {QuotationResponse} from "../models/quotationResponse";
+import {BrowseEventResponse} from "../models/browseEvent";
 @Injectable({
   providedIn: 'root'
 })
@@ -36,5 +37,8 @@ export class ApiService {
   }
   contactUs(data:any):Observable<any>{
     return this._http.post<any>(`https://api.ticketsplug.com/api/v1/contactus/create`,data)
+  }
+  getEventList(params:HttpParams):Observable<BrowseEventResponse>{
+    return this._http.get<BrowseEventResponse>(`https://api.ticketsplug.com/api/v1/events/browse`,{params})
   }
 }

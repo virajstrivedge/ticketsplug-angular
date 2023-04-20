@@ -192,7 +192,7 @@
         }
       }
 
-      
+
         //Banner css
         .home-banner {
           background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(36, 35, 33, 0.118) 10.53%, rgba(36, 35, 33, 0.118) 92.69%, rgba(255, 255, 255, 0.2) 100%), $black-color1;
@@ -240,11 +240,11 @@
                 padding-bottom: 8px;
                 margin-bottom: 0;
                 @media(max-width: 1380px){
-                  font-size: 3.2rem; 
-                  line-height: 48px; 
+                  font-size: 3.2rem;
+                  line-height: 48px;
                 }
                 @media(max-width: 767px){
-                  font-size: 2.8rem; 
+                  font-size: 2.8rem;
                 }
               }
               p {
@@ -290,7 +290,7 @@
               max-width: 100%;
             }
           }
-          @media(max-width: 1199px){ 
+          @media(max-width: 1199px){
               padding: 50px 0;
           }
         }
@@ -305,7 +305,7 @@
                   max-width: 1290px;
               }
             }
-            
+
 
 
           //About css
@@ -372,7 +372,7 @@
                 padding: 50px 0;
             }
           }
-          
+
           //Infobar css
           .infobar {
             background-image: url(../images/front/infobar-bg.png);
@@ -812,6 +812,9 @@
           .upcoming-event-content{
             .event-list{
               margin-bottom: 30px;
+              a{
+                text-decoration: none;
+              }
               .content-wrap{
                 box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
                 border-radius: 15px;
@@ -958,24 +961,26 @@
             }
           }
           .event-banner{
-            height: 450px;
+            //height: 450px;
             img{
-              height: 100%;
-              object-fit: cover;
+              width: auto;
+              /*height: 100%;
+              object-fit: cover;*/
             }
-            @media(max-width: 767px){
-                  height: 350px;
-            }
-            @media(max-width: 576px){
-                  height: 250px;
-            }
+            //@media(max-width: 767px){
+            //      height: 350px;
+            //}
+            //@media(max-width: 576px){
+            //      height: 250px;
+            //}
           }
         }
         .event-banner{
           max-width: 70%;
           margin: 0 auto;
           img{
-            width: 100%;
+            //width: 100%;
+            max-width: 100%;
           }
           @media(max-width: 767px){
             max-width: 100%;

@@ -3,113 +3,53 @@
     <div class="container">
         <section class="event-listing-content">
             <!-- Tabs Buttons -->
-            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs mb-5">
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" (navChange)="onNavChange($event)" class="nav-tabs mb-5">
                 <li [ngbNavItem]="1">
                     <button ngbNavLink>Upcoming</button>
                     <ng-template ngbNavContent>
-            
+
                         <!-- Event Listing -->
                         <div class="upcoming-event-content">
                                 <div class="row">
-                                    <div class="event-list col-md-12">
+                                    <div class="event-list col-md-12" *ngFor="let item of allEvents; index as i" >
+                                      <a [href]="addSubdomain(item.eventShortName)">
                                         <div class="content-wrap">
-                                            <div class="img">
-                                                <img src="assets/images/front/events-1.png" alt="">
+                                          <div class="img">
+                                            <img [src]="item.eventImages.length?item.eventImages[0].imageUrl:''" alt="">
+                                          </div>
+                                          <div class="content">
+                                            <div class="row">
+                                              <div class="title-name col-sm-7">
+                                                <h4>{{item.eventName}}</h4>
+                                              </div>
+                                              <div class="date-time col-sm-5">
+                                                {{item.eventDateString |date}} - {{item.eventTimeString}} {{item.timezoneShort}}
+                                              </div>
                                             </div>
-                                            <div class="content">
-                                                <div class="row">
-                                                    <div class="title-name col-sm-7">
-                                                        <h4>strivedge test</h4>
-                                                    </div>
-                                                    <div class="date-time col-sm-5">
-                                                        20 April - 12:00 PM IST
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="ul-content col-sm-8">
-                                                        <ul>
-                                                            <li>AFROBEATS</li>
-                                                            <li>Age 16+</li>
-                                                            <li>3 Hrs</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="free-tag col-sm-4">
-                                                        Free
-                                                    </div>
-                                                </div>
-                                                <div class="address border-top-content">
-                                                    <span class="locations"><img src="assets/images/front/location-venue.png" alt=""></span>
-                                                    <span class="address">Ahmedabad, Ahmedabad</span>
-                                                </div>
+                                            <div class="row">
+                                              <div class="ul-content col-sm-8">
+                                                <ul>
+                                                  <li>{{item.eventType}}</li>
+                                                  <li>Age {{item.ageLimit}}</li>
+                                                  <li>{{item.duration}} Hrs</li>
+                                                </ul>
+                                              </div>
+                                              <div class="free-tag col-sm-4">
+                                                {{item.eventFree? 'Free' : ('$'+item.lowestPrice+' Onwards')}}
+
+                                              </div>
+
                                             </div>
+                                            <div class="address border-top-content">
+                                              <span class="locations"><img src="assets/images/front/location-venue.png" alt=""></span>
+                                              <span class="address">{{item.address}}</span>
+                                            </div>
+                                          </div>
                                         </div>
+                                      </a>
+
                                     </div>
-                                    <div class="event-list col-md-12">
-                                        <div class="content-wrap">
-                                            <div class="img">
-                                                <img src="assets/images/front/events-1.png" alt="">
-                                            </div>
-                                            <div class="content">
-                                                <div class="row">
-                                                    <div class="title-name col-sm-7">
-                                                        <h4>strivedge test</h4>
-                                                    </div>
-                                                    <div class="date-time col-sm-5">
-                                                        20 April - 12:00 PM IST
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="ul-content col-sm-8">
-                                                        <ul>
-                                                            <li>AFROBEATS</li>
-                                                            <li>Age 16+</li>
-                                                            <li>3 Hrs</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="free-tag col-sm-4">
-                                                        Free
-                                                    </div>
-                                                </div>
-                                                <div class="address border-top-content">
-                                                    <span class="locations"><img src="assets/images/front/location-venue.png" alt=""></span>
-                                                    <span class="address">Ahmedabad, Ahmedabad</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="event-list col-md-12">
-                                        <div class="content-wrap">
-                                            <div class="img">
-                                                <img src="assets/images/front/events-1.png" alt="">
-                                            </div>
-                                            <div class="content">
-                                                <div class="row">
-                                                    <div class="title-name col-sm-7">
-                                                        <h4>strivedge test</h4>
-                                                    </div>
-                                                    <div class="date-time col-sm-5">
-                                                        20 April - 12:00 PM IST
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="ul-content col-sm-8">
-                                                        <ul>
-                                                            <li>AFROBEATS</li>
-                                                            <li>Age 16+</li>
-                                                            <li>3 Hrs</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="free-tag col-sm-4">
-                                                        Free
-                                                    </div>
-                                                </div>
-                                                <div class="address border-top-content">
-                                                    <span class="locations"><img src="assets/images/front/location-venue.png" alt=""></span>
-                                                    <span class="address">Ahmedabad, Ahmedabad</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                         </div>
                     </ng-template>
@@ -117,115 +57,52 @@
                 <li [ngbNavItem]="2">
                     <button ngbNavLink>Past</button>
                     <ng-template ngbNavContent>
-            
+
                         <!-- Event Listing -->
                         <div class="upcoming-event-content">
                                 <div class="row">
-                                    <div class="event-list col-md-12">
+                                    <div class="event-list col-md-12" *ngFor="let item of allEvents; index as i">
+                                      <a [href]="addSubdomain(item.eventShortName)">
                                         <div class="content-wrap">
                                             <div class="img">
-                                                <img src="assets/images/front/events-1.png" alt="">
+                                              <img [src]="item.eventImages.length?item.eventImages[0].imageUrl:''" alt="">
                                             </div>
                                             <div class="content">
                                                 <div class="row">
                                                     <div class="title-name col-sm-7">
-                                                        <h4>strivedge test</h4>
+                                                      <h4>{{item.eventName}}</h4>
                                                     </div>
                                                     <div class="date-time col-sm-5">
-                                                        20 April - 12:00 PM IST
+                                                      {{item.eventDateString |date}} - {{item.eventTimeString}} {{item.timezoneShort}}
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="ul-content col-sm-8">
                                                         <ul>
-                                                            <li>AFROBEATS</li>
-                                                            <li>Age 16+</li>
-                                                            <li>3 Hrs</li>
+                                                          <li>{{item.eventType}}</li>
+                                                          <li>Age {{item.ageLimit}}</li>
+                                                          <li>{{item.duration}} Hrs</li>
                                                         </ul>
                                                     </div>
                                                     <div class="free-tag col-sm-4">
-                                                        Free
+                                                      {{item.eventFree? 'Free' : 'Paid'}}
                                                     </div>
                                                 </div>
                                                 <div class="address border-top-content">
                                                     <span class="locations"><img src="assets/images/front/location-venue.png" alt=""></span>
-                                                    <span class="address">Ahmedabad, Ahmedabad</span>
+                                                  <span class="address">{{item.address}}</span>
                                                 </div>
                                             </div>
                                         </div>
+                                      </a>
                                     </div>
-                                    <div class="event-list col-md-12">
-                                        <div class="content-wrap">
-                                            <div class="img">
-                                                <img src="assets/images/front/events-1.png" alt="">
-                                            </div>
-                                            <div class="content">
-                                                <div class="row">
-                                                    <div class="title-name col-sm-7">
-                                                        <h4>strivedge test</h4>
-                                                    </div>
-                                                    <div class="date-time col-sm-5">
-                                                        20 April - 12:00 PM IST
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="ul-content col-sm-8">
-                                                        <ul>
-                                                            <li>AFROBEATS</li>
-                                                            <li>Age 16+</li>
-                                                            <li>3 Hrs</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="free-tag col-sm-4">
-                                                        Free
-                                                    </div>
-                                                </div>
-                                                <div class="address border-top-content">
-                                                    <span class="locations"><img src="assets/images/front/location-venue.png" alt=""></span>
-                                                    <span class="address">Ahmedabad, Ahmedabad</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="event-list col-md-12">
-                                        <div class="content-wrap">
-                                            <div class="img">
-                                                <img src="assets/images/front/events-1.png" alt="">
-                                            </div>
-                                            <div class="content">
-                                                <div class="row">
-                                                    <div class="title-name col-sm-7">
-                                                        <h4>strivedge test</h4>
-                                                    </div>
-                                                    <div class="date-time col-sm-5">
-                                                        20 April - 12:00 PM IST
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="ul-content col-sm-8">
-                                                        <ul>
-                                                            <li>AFROBEATS</li>
-                                                            <li>Age 16+</li>
-                                                            <li>3 Hrs</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="free-tag col-sm-4">
-                                                        Free
-                                                    </div>
-                                                </div>
-                                                <div class="address border-top-content">
-                                                    <span class="locations"><img src="assets/images/front/location-venue.png" alt=""></span>
-                                                    <span class="address">Ahmedabad, Ahmedabad</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                         </div>
                     </ng-template>
                 </li>
             </ul>
-            
+
             <div [ngbNavOutlet]="nav" class="tab-content"></div>
         </section>
     </div>

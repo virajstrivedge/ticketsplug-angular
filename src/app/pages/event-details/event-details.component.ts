@@ -14,6 +14,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class EventDetailsComponent implements OnInit {
   eventName: string = '';
   eventDetails: EventDetails= {} as EventDetails;
+  currentDateTime = new Date();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -58,5 +59,8 @@ export class EventDetailsComponent implements OnInit {
     })
 
   }
+get checkIfEventIsPast():boolean{
 
+    return new Date(this.eventDetails.eventDate?this.eventDetails.eventDate:new Date()) < this.currentDateTime;
+}
 }
